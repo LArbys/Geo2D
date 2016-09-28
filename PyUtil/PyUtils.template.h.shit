@@ -1,0 +1,34 @@
+
+#ifndef __CINT__
+#ifndef __CLING__
+
+#define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
+#include <numpy/ndarrayobject.h>
+#include <vector>
+
+namespace geo2d {
+
+  template <class T>
+  PyObject* as_ndarray(const AABox<T>& box)
+  {
+    SetPyUtil();
+
+    int nd = 1;
+    npy_intp dims[2];
+    dims[0] = 4;
+
+    std::vector<double> dat(8,0.);
+    dat[0] = box.xmin(); dat[1] = box.ymin();
+    dat[2] = box.xmin(); dat[3] = box.ymax();
+    dat[4] = box.xmax(); dat[5] = box.ymax();
+    dat[6] = box.xmax(); dat[7] = box.ymin();
+    
+    PyArrayObject *array = (PyArrayObject *) PyArray_SimpleNewFromData(nd, dims, NPY_FLOAT, (char*)&(dat[0]) );
+    
+    return PyArray_Return(array);
+  }
+  
+}
+
+#endif
+#endif

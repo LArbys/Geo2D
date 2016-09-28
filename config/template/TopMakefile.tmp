@@ -1,0 +1,63 @@
+#####################################################################################
+#
+# A top Makefile for building my project.
+# One needs to define $GEOALGO2D_BASEDIR to build the sub directories.
+#
+#####################################################################################
+#
+# IMPOSE CONDITION BETWEEN GEOALGO2D_BASEDIR & PWD =>
+#   do not compile if PWD !=$GEOALGO2D_BASEDIR is set elsewhere
+#
+ifndef GEOALGO2D_BASEDIR
+ GEOALGO2D_BASEDIR := $(shell cd . && pwd -P)
+endif
+NORMALIZED_GEOALGO2D_BASEDIR := $(shell cd ${GEOALGO2D_BASEDIR} && pwd -P)
+ifneq ($(NORMALIZED_GEOALGO2D_BASEDIR), $(shell cd . && pwd -P))
+ ifneq ($(wildcard ./PMTDecoder/*),)
+ERROR_MESSAGE := $(error Your source code detected in current dir, but GEOALGO2D_BASEDIR is not current dir.  \
+   To avoid recompiling the wrong installation,\
+   GEOALGO2D_BASEDIR must be set to the current directory when making.  \
+   Currently it is set to ${GEOALGO2D_BASEDIR} [$(NORMALIZED_GEOALGO2D_BASEDIR)].  \
+   Current directory is $(shell pwd).)
+ endif
+endif
+export GEOALGO2D_BASEDIR
+
+all:
+	@mkdir -p $(GEOALGO2D_BASEDIR)/lib
+	@echo "Start building core"
+	@$(MAKE) --directory=$(GEOALGO2D_COREDIR)
+	@echo
+	@echo "Start building UserDev"
+	@$(MAKE) --directory=$(GEOALGO2D_USERDEVDIR)
+	@echo 
+	@echo "Start building main"
+	@$(MAKE) --directory=$(GEOALGO2D_BASEDIR)/main
+	@echo 
+	@echo "Exiting"
+
+clean:
+	@echo "Cleaning core"
+	@$(MAKE) clean --directory=$(GEOALGO2D_COREDIR)
+	@echo
+	@echo "Cleaning UserDev"
+	@$(MAKE) clean --directory=$(GEOALGO2D_USERDEVDIR)
+	@echo
+	@echo "Cleaning main"
+	@$(MAKE) clean --directory=$(GEOALGO2D_BASEDIR)/main
+	@echo
+	@echo "Exiting"
+
+#####################################################################################
+#
+# DOCUMENTATION...
+#
+doxygen:
+	@echo 'dOxygenising your code...'
+	@doxygen $(GEOALGO2D_BASEDIR)/doc/doxygenMyProject.script
+
+doxygen+:
+	@echo 'dOxygenising MyProject + local-ROOT...'
+	@doxygen $(GEOALGO2D_BASEDIR)/doc/doxygenMyProject+.script
+#
+#####################################################################################

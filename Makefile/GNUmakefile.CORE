@@ -1,0 +1,87 @@
+###################################################
+
+# default target list
+ROOTMAP=$(SHLIB:.so=.rootmap)
+GEO2D_BASIC_ROOTLIBS = $(shell root-config --libs)
+GEO2D_BASIC_ROOTINC  = $(shell root-config --cflags)
+
+all: pre_build main_build 
+
+pre_build:
+
+main_build: pre_build .depend $(DICT).cxx $(GEO2D_LIBDIR)/$(SHLIB) $(GEO2D_LIBDIR)/$(ROOTMAP) 
+
+# default rule for making .o files from .cxx files
+%.o: %.cxx
+	@echo '<< compiling' $< '>>'
+	@$(CXX) $(CXXFLAGS) $(GEO2D_BASIC_ROOTINC) $(INCFLAGS) -c $<
+
+ifdef GEO2D_ROOT6
+
+# root class dictionary
+$(DICT).cxx: $(HEADERS) LinkDef.h
+	@echo '<< generating dict >>'
+	@rootcling -f $(DICT).cxx -s $(GEO2D_LIBDIR)/$(SHLIB) -rml $(SHLIB) -rmf $(GEO2D_LIBDIR)/$(ROOTMAP) $(CINTFLAGS) -c $(INCFLAGS) $(HEADERS) LinkDef.h	
+
+# rule for making shareable library
+$(GEO2D_LIBDIR)/$(SHLIB): $(OBJECTS) $(DICT).cxx $(DICT).o
+	@echo '<< generating $(SHLIB) >>'
+	@$(SOMAKER) -o $(GEO2D_LIBDIR)/$(SHLIB) $(filter-out $(DICT).o, $(OBJECTS)) $(DICT).o $(SOFLAGS) $(LDFLAGS) $(GEO2D_BASIC_ROOTLIBS) 
+
+# if ROOTMAP defined, define rule for making it
+$(GEO2D_LIBDIR)/$(ROOTMAP): $(GEO2D_LIBDIR)/$(SHLIB)
+
+else
+
+# root class dictionary
+$(DICT).cxx: $(HEADERS) LinkDef.h
+	@echo '<< generating dict >>'
+	@rootcint -f $(DICT).cxx -c $(CINTFLAGS) $(INCFLAGS) $(HEADERS) LinkDef.h
+
+# rule for making shareable library
+$(GEO2D_LIBDIR)/$(SHLIB): $(OBJECTS) $(DICT).cxx $(DICT).o
+	@echo '<< generating $(SHLIB) >>'
+	@mkdir -p lib
+	@$(SOMAKER) $(SOFLAGS) -o $(GEO2D_LIBDIR)/$(SHLIB) $(filter-out $(DICT).o, $(OBJECTS)) $(DICT).o $(LDFLAGS) $(GEO2D_BASIC_ROOTLIBS) 
+	@echo '<< installing $(SHLIB) >>'
+
+# if ROOTMAP defined, define rule for making it
+$(GEO2D_LIBDIR)/$(ROOTMAP): $(GEO2D_LIBDIR)/$(SHLIB)
+	@echo "<< generating rootmap >>"
+	@rlibmap -f  -o $(GEO2D_LIBDIR)/$(ROOTMAP) -l $(GEO2D_LIBDIR)/$(SHLIB) -c LinkDef.h
+
+endif
+###################################################
+
+# "make clean" target
+clean: pre_clean
+	@echo '<< cleaning all >>'
+	@rm -f .depend
+	@rm -f $(DICT).* *.o 
+	@rm -f lib/*.o lib/lib*.so lib/lib*.rootmap lib/lib*.pcm
+	@rm -f $(GEO2D_LIBDIR)/$(SHLIB) $(GEO2D_LIBDIR)/$(SHLIB:.so=.rootmap) $(GEO2D_LIBDIR)/$(SHLIB:.so=_rdict.pcm)
+
+pre_clean: 
+
+###################################################
+libclean:
+	@echo '<< cleaning lib directory >>'
+	@rm -f $(GEO2D_LIBDIR)/$(SHLIB) 
+	@rm -f lib/$(SHLIB) 
+
+###################################################
+clearCINT:
+	@echo '<< removing CINT >>'
+	@rm -f $(DICT).*
+
+
+###################################################
+# auto-generate dependencies using g++ -M
+.depend: $(SOURCES) $(HEADERS)
+	@#rm .depend
+	@echo '<< checking dependencies >>'
+	@$(CXX) -M $(CXXFLAGS) $(GEO2D_BASIC_ROOTINC) $(INCFLAGS) $(SOURCES) > .depend
+
+-include .depend
+
+#ALWAYS:
