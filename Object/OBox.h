@@ -57,7 +57,7 @@ namespace geo2d {
     OBox(const Vector2D<T>& center, const Vector2D<T>& dir, const Vector2D<T>& width);
 
     /// Alternative ctor (2)
-    OBox(const std::vector<Vector2D<T> >& pts);
+    OBox(std::vector<Vector2D<T> > pts);
 
     //
     // Modifier

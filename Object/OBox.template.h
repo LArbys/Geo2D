@@ -36,7 +36,7 @@ namespace geo2d {
   }
 
   template <class T>
-  OBox<T>::OBox(const std::vector<Vector2D<T> >& pts)
+  OBox<T>::OBox(std::vector<Vector2D<T> > pts)
   {
     T minArea = std::numeric_limits<T>::max();
     // Loop through all edges; j trails i by 1, modulo numPts
@@ -44,11 +44,13 @@ namespace geo2d {
       // Get current edge e0 (e0x,e0y), normalized
       Vector2D<T> e0(pts[i].x - pts[j].x, pts[i].y - pts[j].y);
       e0 /= e0.length();
+
       // Get an axis e1 orthogonal to edge e0
       Vector2D<T> e1(-e0.y, e0.x); // = Perp2D(e0)
       // Loop through all points to get maximum extents
       T min0 = 0.0, min1 = 0.0, max0 = 0.0, max1 = 0.0;
       for (int k = 0; k < pts.size(); k++) {
+
 	// Project points onto axes e0 and e1 and keep track // of minimum and maximum values along both axes Vector2D<T> d = pt[k] - pt[j];
 	Vector2D<T> d = pts[k] - pts[j];
 	T dot = d * e0;
@@ -58,14 +60,15 @@ namespace geo2d {
 	if (dot < min1) min1 = dot;
 	if (dot > max1) max1 = dot;
       }
+
       T area = (max0 - min0) * (max1 - min1);
       // If best so far, remember area, center, and axes
       if (area < minArea) {
 	minArea = area;
-	_center = pts[j] + 0.5 * ((min0 + max0) * e0 + (min1 + max1) * e1);
-	_axes.x= e0; _axes.y = e1;
-	_width.x = (max0 - min0);
-	_width.y = (max1 - min1);
+	_center = pts[j] + (e0*(min0+max0) + e1*(min1+max1))*0.5;
+	_axes = e0;
+	_width.x = (max0 - min0)/2.0;
+	_width.y = (max1 - min1)/2.0;
       }
     }
   }

@@ -66,7 +66,7 @@ namespace geo2d {
     inline Vector2D<T>  operator *  ( const T&   rhs )
     { auto res = (*this); res *= rhs; return res; }
     inline T    operator*( const Vector2D<T>& rhs )
-    { return x * rhs.x + y + rhs.y; }
+    { return x * rhs.x + y * rhs.y; }
 
     /// Magnitude
     T length() const
