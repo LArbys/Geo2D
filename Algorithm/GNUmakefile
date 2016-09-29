@@ -3,8 +3,8 @@
 #
 
 # specific names for this package
-DICT  = Geo2D_ObjectDict
-SHLIB = libGeo2D_Object.so
+DICT  = Geo2D_AlgorithmDict
+SHLIB = libGeo2D_Algorithm.so
 SOURCES = $(filter-out $(DICT).cxx, $(wildcard *.cxx))
 FMWK_HEADERS = LinkDef.h $(DICT).h
 HEADERS = $(filter-out $(FMWK_HEADERS), $(wildcard *.h))
@@ -14,7 +14,7 @@ OBJECTS = $(SOURCES:.cxx=.o)
 INCFLAGS  = -I.                       #Include itself
 INCFLAGS += -I$(GEO2D_BASEDIR)
 
-LDFLAGS += -L$(GEO2D_LIBDIR) -lGeo2D_Core
+LDFLAGS += -L$(GEO2D_LIBDIR) -lGeo2D_Core -lGeo2D_Object
 
 # platform-specific options
 OSNAME          = $(shell uname -s)

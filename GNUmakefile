@@ -1,4 +1,4 @@
-SUBDIRS :=  Core Object PyUtil
+SUBDIRS :=  Core Object PyUtil Algorithm
 
 .phony: all clean
 
