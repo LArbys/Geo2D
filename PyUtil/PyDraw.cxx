@@ -13,7 +13,29 @@ namespace geo2d {
     static bool once=false;
     if(!once) { import_array(); once=true; }
     //SetPyUtil();
-  } 
+  }
+
+  PyObject* PyDraw::image(const cv::Mat m) const
+  {
+    float carray[m.rows * m.cols];
+    for(size_t i=0; i<m.rows; ++i) {
+      const unsigned char* rowdata = m.ptr<unsigned char>(i);
+      for(size_t j=0; j<m.cols; ++j) {
+	carray[i*m.cols+j] = (float)(int(m.at<uchar>(i,j)));
+      }
+    }
+
+    npy_intp dims[2];
+    dims[0] = m.rows;
+    dims[1] = m.cols;
+    auto array = (PyArrayObject*)(PyArray_ZEROS(2,dims,NPY_FLOAT,0));
+
+    float* data_ptr = (float*) PyArray_DATA(array);
+
+    memcpy(data_ptr, carray, sizeof(float)*(m.rows*m.cols));
+
+    return PyArray_Return(array);
+  }
 
   PyObject* PyDraw::points(const Vector2DArray<float>& input) const
   {

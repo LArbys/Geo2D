@@ -14,7 +14,6 @@
 //
 #pragma link C++ class geo2d::load_pyutil+;
 #pragma link C++ class geo2d::PyDraw;
-#pragma link C++ class geo2d::PyRep;
 #pragma link C++ function geo2d::as_ndarray32(const std::vector<float>&)+;
 #pragma link C++ function geo2d::as_ndarray64(const std::vector<double>&)+;
 //ADD_NEW_CLASS ... do not change this line
