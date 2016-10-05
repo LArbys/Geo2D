@@ -2,4 +2,7 @@ lib/*
 *.txt
 *.o
 *Dict*
-
+*.ipynb_checkpoints
+.depend
+*.dat
+*.root

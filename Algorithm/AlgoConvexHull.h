@@ -14,8 +14,8 @@
 #ifndef ALGOCONVEXHULL_H
 #define ALGOCONVEXHULL_H
 
-#include "Object/Vector2DArray.h"
-
+#include "Core/Vector2DArray.h"
+#include "Core/BoundingBox.h"
 namespace geo2d {
   /**
      \class ConvexHull
@@ -35,13 +35,15 @@ namespace geo2d {
 
     Vector2DArray<T> MonotoneChain(Vector2DArray<T> pts);
 
+    cv::Rect_<T> test(Vector2DArray<T> pts);
+
+    RotatedRect test2(Vector2DArray<T> pts);
+    
   protected:
 
 
   };
 }
-
-#include "AlgoConvexHull.template.h"
 
 #endif
 /** @} */ // end of doxygen group 

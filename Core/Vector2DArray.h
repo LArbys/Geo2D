@@ -53,9 +53,9 @@ namespace geo2d {
     Vector2D<T> dir(size_t idx) const;   
     const std::vector<Vector2D<T> >& as_vector() const { return (*this); }
   };
+
 }
 
-#include "Vector2DArray.template.h"
 #endif
 /** @} */ // end of doxygen group 
 

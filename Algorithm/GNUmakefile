@@ -13,13 +13,15 @@ OBJECTS = $(SOURCES:.cxx=.o)
 # include options for this package
 INCFLAGS  = -I.                       #Include itself
 INCFLAGS += -I$(GEO2D_BASEDIR)
-
-LDFLAGS += -L$(GEO2D_LIBDIR) -lGeo2D_Core -lGeo2D_Object
+INCFLAGS += -I$(OPENCV_INCDIR)
 
 # platform-specific options
 OSNAME          = $(shell uname -s)
 HOST            = $(shell uname -n)
 OSNAMEMODE      = $(OSNAME)
+
+LDFLAGS += -L$(GEO2D_LIBDIR) -lGeo2D_Core 
+LDFLAGS += -L$(OPENCV_LIBDIR) -lopencv_core -lopencv_highgui -lopencv_imgcodecs -lopencv_imgproc
 
 # call kernel specific compiler setup
 include $(GEO2D_BASEDIR)/Makefile/Makefile.${OSNAME}

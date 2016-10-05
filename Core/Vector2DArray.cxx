@@ -2,7 +2,7 @@
 #define VECTOR2DARRAY_TEMPLATE_H
 
 #include "Vector2DArray.h"
-#include "Core/spoon.h"
+#include "spoon.h"
 
 namespace geo2d {
 
@@ -21,7 +21,7 @@ namespace geo2d {
   {
     T res=0;
     for(size_t idx=0; idx+1<this->size(); ++idx) {
-      res += (*this)[idx].distance((*this)[idx+1]);
+      res += geo2d::dist((*this)[idx],(*this)[idx+1]);
     }
     return res;
   }
@@ -31,7 +31,7 @@ namespace geo2d {
   {
     T lsum=0;
     for(size_t idx=0; idx+1<this->size(); ++idx) {
-      lsum += (*this)[idx].distance((*this)[idx+1]);
+      lsum += geo2d::dist((*this)[idx],(*this)[idx+1]);
       if(lsum > length) break;
     }
     return (lsum > length);
@@ -43,10 +43,16 @@ namespace geo2d {
     if(idx >= this->size()) throw spoon("Requested index out of range!");
     if(this->size() <2) throw spoon("Array length < 2 ... no direction can be defined!");
     if((idx+1) == this->size())
-      return (*this)[idx-1].dir((*this)[idx]);
+      return geo2d::dir((*this)[idx-1],(*this)[idx]);
     else
-      return (*this)[idx].dir((*this)[idx+1]);
+      return geo2d::dir((*this)[idx],(*this)[idx+1]);
   }
 
 }
+
+template class geo2d::Vector2DArray<double>;
+template class geo2d::Vector2DArray<float >;
+template class geo2d::Vector2DArray<int   >;
+template class geo2d::Vector2DArray<short >;
+
 #endif

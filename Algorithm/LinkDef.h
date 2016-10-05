@@ -13,6 +13,7 @@
 #pragma link C++ class geo2d::AlgoConvexHull<int>+;
 #pragma link C++ class geo2d::AlgoConvexHull<float>+;
 #pragma link C++ class geo2d::AlgoConvexHull<double>+;
+
 //ADD_NEW_CLASS ... do not change this line
 
 #endif

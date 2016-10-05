@@ -14,6 +14,7 @@ main_build: pre_build .depend $(DICT).cxx $(GEO2D_LIBDIR)/$(SHLIB) $(GEO2D_LIBDI
 # default rule for making .o files from .cxx files
 %.o: %.cxx
 	@echo '<< compiling' $< '>>'
+#	@echo $(CXX) $(CXXFLAGS) $(GEO2D_BASIC_ROOTINC) $(INCFLAGS) -c $<
 	@$(CXX) $(CXXFLAGS) $(GEO2D_BASIC_ROOTINC) $(INCFLAGS) -c $<
 
 ifdef GEO2D_ROOT6
@@ -21,11 +22,13 @@ ifdef GEO2D_ROOT6
 # root class dictionary
 $(DICT).cxx: $(HEADERS) LinkDef.h
 	@echo '<< generating dict >>'
+#	@echo rootcling -f $(DICT).cxx -s $(GEO2D_LIBDIR)/$(SHLIB) -rml $(SHLIB) -rmf $(GEO2D_LIBDIR)/$(ROOTMAP) $(CINTFLAGS) -c $(INCFLAGS) $(HEADERS) LinkDef.h
 	@rootcling -f $(DICT).cxx -s $(GEO2D_LIBDIR)/$(SHLIB) -rml $(SHLIB) -rmf $(GEO2D_LIBDIR)/$(ROOTMAP) $(CINTFLAGS) -c $(INCFLAGS) $(HEADERS) LinkDef.h	
 
 # rule for making shareable library
 $(GEO2D_LIBDIR)/$(SHLIB): $(OBJECTS) $(DICT).cxx $(DICT).o
 	@echo '<< generating $(SHLIB) >>'
+#	@echo $(SOMAKER) -o $(GEO2D_LIBDIR)/$(SHLIB) $(filter-out $(DICT).o, $(OBJECTS)) $(DICT).o $(SOFLAGS) $(LDFLAGS) $(GEO2D_BASIC_ROOTLIBS)
 	@$(SOMAKER) -o $(GEO2D_LIBDIR)/$(SHLIB) $(filter-out $(DICT).o, $(OBJECTS)) $(DICT).o $(SOFLAGS) $(LDFLAGS) $(GEO2D_BASIC_ROOTLIBS) 
 
 # if ROOTMAP defined, define rule for making it
