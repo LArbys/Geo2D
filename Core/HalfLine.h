@@ -11,32 +11,34 @@
 /** \addtogroup Object
 
     @{*/
-#ifndef LINE2D_H
-#define LINE2D_H
+#ifndef HALFLINE_H
+#define HALFLINE_H
 
 #include <iostream>
 #include <Vector2D.h>
+
 namespace geo2d {
   /**
-     \class Line2D
-     User defined class Line2D ... these comments are used to generate
+     \class HalfLine
+     User defined class HalfLine ... these comments are used to generate
      doxygen documentation!
   */
   template <class T>
-  class Line2D {
+  class HalfLine {
     
   public:
     
     /// Default constructor
-    Line2D(T islope=0, T ioffset=0)
-      : slope(islope), offset(ioffset)
+    HalfLine(T islope, const Vector2D<T>& point)
+      : slope(islope), pt(point)
     {}
-    
-    /// Default destructor
-    ~Line2D(){}
 
+    /// Default destructor
+    ~HalfLine(){}
+    
     T slope;
-    T offset;
+    Vector2D<T> pt;
+
   };
 }
 
