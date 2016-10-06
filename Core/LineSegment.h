@@ -29,19 +29,20 @@ namespace geo2d {
   public:
     
     /// Default constructor
-    LineSegment(const Vector2D<T>& point1, const Vector2D<T>& point2)
-      : p1(point1), p2(point2)
+    LineSegment(const Vector2D<T>& point1 = Vector2D<T>(),
+		const Vector2D<T>& point2 = Vector2D<T>())
+      : pt1(point1), pt2(point2)
     {}
     
     /// Default destructor
     ~LineSegment(){}
     
-    double length  (){ return dist(p1,p2);  }
-    double length2 (){ return dist2(p1,p2); }
-    double angle   (){ return angle(p1,p2); }
+    double length  (){ return dist (pt1,pt2); }
+    double length2 (){ return dist2(pt1,pt2); }
+    double angle   (){ return angle(pt1,pt2); }
     
-    Vector2D<T> p1;
-    Vector2D<T> p2;
+    ::cv::Point_<T> pt1;
+    ::cv::Point_<T> pt2;
     
   };
 }

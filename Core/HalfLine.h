@@ -37,7 +37,7 @@ namespace geo2d {
     ~HalfLine(){}
     
     T slope;
-    Vector2D<T> pt;
+    ::cv::Point_<T> pt;
 
   };
 }

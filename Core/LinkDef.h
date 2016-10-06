@@ -37,12 +37,28 @@
 #pragma link C++ class geo2d::Rect+;
 #pragma link C++ class geo2d::RotatedRect+;
 
-#pragma link C++ class geo2d::Line+;
-#pragma link C++ class geo2d::HalfLine+;
-#pragma link C++ class geo2d::LineSegment+;
+#pragma link C++ class geo2d::Line<double>+;
+#pragma link C++ class geo2d::Line<float >+;
+#pragma link C++ class geo2d::Line<int   >+;
+#pragma link C++ class geo2d::Line<short >+;
 
+#pragma link C++ class geo2d::HalfLine<double>+;
+#pragma link C++ class geo2d::HalfLine<float >+;
+#pragma link C++ class geo2d::HalfLine<int   >+;
+#pragma link C++ class geo2d::HalfLine<short >+;
+
+#pragma link C++ class geo2d::LineSegment<double>+;
+#pragma link C++ class geo2d::LineSegment<float >+;
+#pragma link C++ class geo2d::LineSegment<int   >+;
+#pragma link C++ class geo2d::LineSegment<short >+;
+
+#pragma link C++ class geo2d::Circle<double>+;
+#pragma link C++ class geo2d::Circle<float >+;
+#pragma link C++ class geo2d::Circle<int   >+;
+#pragma link C++ class geo2d::Circle<short >+;
 //ADD_NEW_CLASS ... do not change this line
 #endif
+
 
 
 
