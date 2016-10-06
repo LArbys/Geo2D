@@ -41,9 +41,6 @@
 #pragma link C++ class geo2d::HalfLine+;
 #pragma link C++ class geo2d::LineSegment+;
 
-#pragma link C++ function geo2d::SegmentSegmentTest(const geo2d::LineSegment<double>&, const geo2d::LineSegment<double>&, geo2d::Vector2D<double>&)+;
-#pragma link C++ function geo2d::SegmentSegmentTest(const geo2d::LineSegment<float>&, const geo2d::LineSegment<float>&, geo2d::Vector2D<float>&)+;
-
 //ADD_NEW_CLASS ... do not change this line
 #endif
 
