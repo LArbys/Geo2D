@@ -29,16 +29,23 @@ namespace geo2d {
   public:
     
     /// Default constructor
-    Line(T islope=0, T ioffset=0)
-      : slope(islope), offset(ioffset)
+    Line(const Vector2D<T>& direction, T ioffset = 0)
+      : dir(direction), offset(ioffset)
+    {}
+    
+    Line(T angle = 0, T ioffset = 0)
+      : dir(geo2d::dir<T>(angle)), offset(ioffset)
     {}
     
     /// Default destructor
     ~Line(){}
-
-    T slope;
+    
+    Vector2D<float> dir;
     T offset;
   };
+
+  template <class T>
+  double angle(const Line<T>&);
 }
 
 #endif

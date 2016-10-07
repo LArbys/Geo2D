@@ -2,5 +2,20 @@
 #define LINE_CXX
 
 #include "Line.h"
+#include "Line.imp.h"
+
+namespace geo2d {
+
+  template class Line<double>;
+  template class Line<float >;
+  template class Line<int   >;
+  template class Line<short >;
+
+  template double angle(const Line<double>&);
+  template double angle(const Line<float >&);
+  template double angle(const Line<int   >&);
+  template double angle(const Line<short >&);
+
+}
 
 #endif

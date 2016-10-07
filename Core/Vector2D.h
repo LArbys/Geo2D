@@ -31,6 +31,9 @@ namespace geo2d {
   Vector2D<T> dir(const Vector2D<T>& obj1, const Vector2D<T>& obj2);
 
   template <class T>
+  Vector2D<T> dir(double angle);
+
+  template <class T>
   T length2(const Vector2D<T>& obj);
 
   template <class T>

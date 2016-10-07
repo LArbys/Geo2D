@@ -25,7 +25,89 @@ namespace geo2d {
     }
     return false;
   }
-  
+
+  template <class T>
+  Vector2DArray<float> Intersection(const Circle<T>& circle, const HalfLine<T>& line)
+  {
+    Vector2DArray<float> res;
+    auto const& d  = line.dir;
+    auto const& pt = line.pt;
+    
+    auto const  m = pt - circle.center;
+    float b = m.dot(d);
+    float c = m.dot(m) - circle.radius * circle.radius;
+    // Exit if line's origin outside circle (c > 0) and line pointing away from circle (b > 0)
+    if(c > 0.0f && b > 0.0f) return res;
+    float discr = b*b - c;
+    // A negative discriminant corresponds to a line missing circle
+    if (discr < 0.0f) return res;
+    // Line now found to intersect circle, compute intersection point(s)
+    discr = sqrt(discr);
+    float mag = -b - discr;
+    if(mag>=0) {
+      res.push_back(pt + line.dir * mag);
+    }
+    mag = -b + discr;
+    if(mag>0){
+      res.push_back(pt + line.dir * mag);
+    }
+    return res;    
+  }
+
+  template <class T>
+  Vector2DArray<T> Intersection(const Circle<T>& circle, const LineSegment<T>& line)
+  {
+    Vector2DArray<float> res;
+    auto const& d  = geo2d::dir(line);
+    auto const& pt = line.pt1;
+    
+    auto const  m = pt - circle.center;
+    float b = m.dot(d);
+    float c = m.dot(m) - circle.radius * circle.radius;
+    // Exit if line's origin outside circle (c > 0) and line pointing away from circle (b > 0)
+    if(c > 0.0f && b > 0.0f) return res;
+    float discr = b*b - c;
+    // A negative discriminant corresponds to a line missing circle
+    if (discr < 0.0f) return res;
+    // Line now found to intersect circle, compute intersection point(s)
+    discr = sqrt(discr);
+    float mag = -b - discr;
+    if(mag>=0 && mag < length(line)) {
+      res.push_back(pt + line.dir * mag);
+    }
+    mag = -b + discr;
+    if(mag>0 && mag < length(line)) {
+      res.push_back(pt + line.dir * mag);
+    }
+    return res;    
+  }
+
+  template <class T>
+  Vector2DArray<T> Intersection(const Circle<T>& circle, const Line<T>& line)
+  {
+    Vector2DArray<float> res;
+    auto const& d = geo2d::dir(line);
+    auto const pt = Vector2D<T>();
+    pt.x = 0; pt.y = line.offset;
+    
+    auto const  m = pt - circle.center;
+    float b = m.dot(d);
+    float c = m.dot(m) - circle.radius * circle.radius;
+    float discr = b*b - c;
+    // A negative discriminant corresponds to a line missing circle
+    if (discr < 0.0f) return res;
+    // Line now found to intersect circle, compute intersection point(s)
+    discr = sqrt(discr);
+    if(discr==0.0f) {
+      res.push_back(pt - b * line.dir );
+    }else{
+      res.resize(2);
+      res[0] = pt + line.dir * (-b - discr);
+      res[1] = pt + line.dir * (-b + discr);
+    }
+    return res;    
+  }
+
 }
 
 

@@ -23,6 +23,11 @@ namespace geo2d {
   template Vector2D<int   > dir(const Vector2D<int   >&, const Vector2D<int   >&);
   template Vector2D<short > dir(const Vector2D<short >&, const Vector2D<short >&);
 
+  template Vector2D<double> dir(double angle);
+  template Vector2D<float > dir(double angle);
+  template Vector2D<int   > dir(double angle);
+  template Vector2D<short > dir(double angle);
+
   template double length2(const Vector2D<double>&);
   template float  length2(const Vector2D<float >&);
   template int    length2(const Vector2D<int   >&);

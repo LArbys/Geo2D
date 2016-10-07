@@ -37,14 +37,19 @@ namespace geo2d {
     /// Default destructor
     ~LineSegment(){}
     
-    double length  (){ return dist (pt1,pt2); }
-    double length2 (){ return dist2(pt1,pt2); }
-    double angle   (){ return angle(pt1,pt2); }
-    
     ::cv::Point_<T> pt1;
     ::cv::Point_<T> pt2;
     
   };
+
+  template <class T>
+  double length  (const LineSegment<T>&);
+  template <class T>
+  double length2 (const LineSegment<T>&);
+  template <class T>
+  double angle   (const LineSegment<T>&);
+  template <class T>
+  Vector2D<T> dir(const LineSegment<T>&);
 }
 
 #endif

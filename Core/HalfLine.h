@@ -29,17 +29,26 @@ namespace geo2d {
   public:
     
     /// Default constructor
-    HalfLine(T islope, const Vector2D<T>& point)
-      : slope(islope), pt(point)
+    HalfLine(const Vector2D<T>& point, const Vector2D<T>& direction)
+      : pt(point), dir(direction)
+    {}
+
+    /// Default constructor
+    HalfLine(const Vector2D<T>& point, double angle)
+      : pt(point), dir(geo2d::dir<T>(angle))
     {}
 
     /// Default destructor
     ~HalfLine(){}
-    
-    T slope;
+
     ::cv::Point_<T> pt;
+    Vector2D<T> dir;
 
   };
+
+  template <class T>
+  double angle(const HalfLine<T>&);
+
 }
 
 #endif
