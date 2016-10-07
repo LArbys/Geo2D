@@ -15,6 +15,7 @@
 #define CIRCLE_H
 
 #include "Vector2D.h"
+#include "Vector2DArray.h"
 
 namespace geo2d {
   /**
@@ -33,6 +34,8 @@ namespace geo2d {
     Circle(const Vector2D<T>&, const T);
 
     Circle(const T, const T, const T);
+
+    Circle(const Vector2DArray<T>& pts);
     
     /// Default destructor
     ~Circle(){}

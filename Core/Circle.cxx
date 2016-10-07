@@ -2,6 +2,7 @@
 #define CIRCLE_CXX
 
 #include "Circle.h"
+#include "opencv2/imgproc/imgproc.hpp"
 
 namespace geo2d {
 
@@ -16,6 +17,17 @@ namespace geo2d {
     : center()
     , radius(r)
   {center.x = x; center.y = y;}
+
+  template <class T>
+  Circle<T>::Circle(const Vector2DArray<T>& pts)
+  {
+    Vector2D<float> pt;
+    float r;
+    ::cv::minEnclosingCircle(pts, pt, r);
+    center.x = (T)(pt.x);
+    center.y = (T)(pt.y);
+    radius   = (T)r;
+  }
 
 }
 
