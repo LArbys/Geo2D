@@ -21,7 +21,7 @@ namespace geo2d {
 
   template <class T>
   Vector2D<T> dir(double angle)
-  { Vector2D<T> res; res.x = cos(M_PI * angle / 180.); res.y = sqrt(1. - res.x * res.x); return res; }
+  { Vector2D<T> res; res.x = cos(M_PI * angle / 180.); res.y = sin(M_PI * angle / 180.); return res; }
 
   template <class T>
   T length2(const Vector2D<T>& obj)
