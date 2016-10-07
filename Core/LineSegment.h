@@ -33,6 +33,10 @@ namespace geo2d {
 		const Vector2D<T>& point2 = Vector2D<T>())
       : pt1(point1), pt2(point2)
     {}
+
+    /// Alternative ctor (1)
+    LineSegment(T x1, T y1, T x2, T y2)
+    { pt1.x = x1; pt1.y = y1; pt2.x = x2; pt2.y = y2; }
     
     /// Default destructor
     ~LineSegment(){}
