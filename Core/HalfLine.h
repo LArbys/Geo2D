@@ -33,16 +33,24 @@ namespace geo2d {
       : pt(point), dir(direction)
     {}
 
-    /// Default constructor
+    /// Alternative ctor (1)
     HalfLine(const Vector2D<T>& point, double angle)
       : pt(point), dir(geo2d::dir<T>(angle))
     {}
+
+    /// Alternative ctor (2)
+    HalfLine(T ix, T iy, double angle)
+      : dir(geo2d::dir<T>(angle))
+    { pt.x = ix; pt.y = iy; }
 
     /// Default destructor
     ~HalfLine(){}
 
     ::cv::Point_<T> pt;
     Vector2D<T> dir;
+
+    T x(T y) const;
+    T y(T x) const;
 
   };
 

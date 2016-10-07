@@ -18,6 +18,7 @@
 #include <vector>
 
 namespace geo2d {
+
   /**
      \class Vector2DArray
      User defined class Vector2DArray ... these comments are used to generate

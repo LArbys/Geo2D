@@ -29,19 +29,26 @@ namespace geo2d {
   public:
     
     /// Default constructor
-    Line(const Vector2D<T>& direction, T ioffset = 0)
-      : dir(direction), offset(ioffset)
+    Line(const Vector2D<T>& point, const Vector2D<T>& direction)
+      : pt(point), dir(direction)
     {}
     
-    Line(T angle = 0, T ioffset = 0)
-      : dir(geo2d::dir<T>(angle)), offset(ioffset)
+    Line(const Vector2D<T>& point, double angle)
+      : pt(point), dir(geo2d::dir<T>(angle))
     {}
-    
+
+    Line(T ix, T iy, T angle)
+      : dir(geo2d::dir<T>(angle))
+    { pt.x = ix; pt.y = iy; }
+
     /// Default destructor
     ~Line(){}
-    
+
+    Vector2D<T> pt;
     Vector2D<float> dir;
-    T offset;
+
+    T x(T y) const;
+    T y(T x) const;
   };
 
   template <class T>

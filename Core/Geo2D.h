@@ -16,13 +16,13 @@ namespace geo2d {
   bool SegmentSegmentTest(const LineSegment<T>&,const LineSegment<T>&,Vector2D<T>&);
 
   template <class T>
-  Vector2DArray<T> Intersection(const Circle<T>& c, const LineSegment<T>& line);
+  Vector2DArray<float> Intersection(const Circle<T>& c, const LineSegment<T>& line);
 
   template <class T>
-  Vector2DArray<T> Intersection(const Circle<T>& c, const HalfLine<T>& line);
+  Vector2DArray<float> Intersection(const Circle<T>& c, const HalfLine<T>& line);
 
   template <class T>
-  Vector2DArray<T> Intersection(const Circle<T>& c, const Line<T>& line);
+  Vector2DArray<float> Intersection(const Circle<T>& c, const Line<T>& line);
 
 }
 

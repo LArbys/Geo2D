@@ -30,10 +30,13 @@ namespace geo2d {
   Vector2DArray<float> Intersection(const Circle<T>& circle, const HalfLine<T>& line)
   {
     Vector2DArray<float> res;
-    auto const& d  = line.dir;
-    auto const& pt = line.pt;
-    
-    auto const  m = pt - circle.center;
+    Vector2D<float> d, pt, center;
+    d.x  = line.dir.x;  d.y = line.dir.y;
+    pt.x = line.pt.x;  pt.y = line.pt.y;
+    center.x = circle.center.x;
+    center.y = circle.center.y;
+
+    auto const  m = pt - center;
     float b = m.dot(d);
     float c = m.dot(m) - circle.radius * circle.radius;
     // Exit if line's origin outside circle (c > 0) and line pointing away from circle (b > 0)
@@ -45,23 +48,28 @@ namespace geo2d {
     discr = sqrt(discr);
     float mag = -b - discr;
     if(mag>=0) {
-      res.push_back(pt + line.dir * mag);
+      res.push_back(pt + d * mag);
     }
     mag = -b + discr;
     if(mag>0){
-      res.push_back(pt + line.dir * mag);
+      res.push_back(pt + d * mag);
     }
     return res;    
   }
 
   template <class T>
-  Vector2DArray<T> Intersection(const Circle<T>& circle, const LineSegment<T>& line)
+  Vector2DArray<float> Intersection(const Circle<T>& circle, const LineSegment<T>& line)
   {
     Vector2DArray<float> res;
-    auto const& d  = geo2d::dir(line);
-    auto const& pt = line.pt1;
+    Vector2D<float> d, pt, center;
+    d.x = line.pt2.x - line.pt1.x;
+    d.y = line.pt2.y - line.pt1.y;
+    d /= geo2d::length(d);
+    pt.x = line.pt1.x;  pt.y = line.pt1.y;
+    center.x = circle.center.x;
+    center.y = circle.center.y;
     
-    auto const  m = pt - circle.center;
+    auto const  m = pt - center;
     float b = m.dot(d);
     float c = m.dot(m) - circle.radius * circle.radius;
     // Exit if line's origin outside circle (c > 0) and line pointing away from circle (b > 0)
@@ -73,24 +81,26 @@ namespace geo2d {
     discr = sqrt(discr);
     float mag = -b - discr;
     if(mag>=0 && mag < length(line)) {
-      res.push_back(pt + line.dir * mag);
+      res.push_back(pt + d * mag);
     }
     mag = -b + discr;
     if(mag>0 && mag < length(line)) {
-      res.push_back(pt + line.dir * mag);
+      res.push_back(pt + d * mag);
     }
     return res;    
   }
 
   template <class T>
-  Vector2DArray<T> Intersection(const Circle<T>& circle, const Line<T>& line)
+  Vector2DArray<float> Intersection(const Circle<T>& circle, const Line<T>& line)
   {
     Vector2DArray<float> res;
-    auto const& d = geo2d::dir(line);
-    auto const pt = Vector2D<T>();
-    pt.x = 0; pt.y = line.offset;
+    Vector2D<float> d, pt, center;
+    d.x  = line.dir.x;  d.y = line.dir.y;
+    pt.x = line.pt.x;  pt.y = line.pt.y;
+    center.x = circle.center.x;
+    center.y = circle.center.y;
     
-    auto const  m = pt - circle.center;
+    auto const  m = pt - center;
     float b = m.dot(d);
     float c = m.dot(m) - circle.radius * circle.radius;
     float discr = b*b - c;
@@ -99,11 +109,11 @@ namespace geo2d {
     // Line now found to intersect circle, compute intersection point(s)
     discr = sqrt(discr);
     if(discr==0.0f) {
-      res.push_back(pt - b * line.dir );
+      res.push_back(pt - d * b);
     }else{
       res.resize(2);
-      res[0] = pt + line.dir * (-b - discr);
-      res[1] = pt + line.dir * (-b + discr);
+      res[0] = pt + d * (-b - discr);
+      res[1] = pt + d * (-b + discr);
     }
     return res;    
   }

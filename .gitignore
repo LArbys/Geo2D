@@ -6,3 +6,4 @@ lib/*
 .depend
 *.dat
 *.root
+*.ipynb

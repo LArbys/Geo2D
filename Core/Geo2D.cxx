@@ -16,5 +16,20 @@ namespace geo2d {
   template bool SegmentSegmentTest(const LineSegment<int   >& a,const LineSegment<int   >& b, Vector2D<int   >& c);
   template bool SegmentSegmentTest(const LineSegment<short >& a,const LineSegment<short >& b, Vector2D<short >& c);
 
+  template Vector2DArray<float> Intersection(const Circle<double>& c, const LineSegment<double>& line);
+  template Vector2DArray<float> Intersection(const Circle<float >& c, const LineSegment<float >& line);
+  template Vector2DArray<float> Intersection(const Circle<int   >& c, const LineSegment<int   >& line);
+  template Vector2DArray<float> Intersection(const Circle<short >& c, const LineSegment<short >& line);
+
+  template Vector2DArray<float> Intersection(const Circle<double>& c, const Line<double>& line);
+  template Vector2DArray<float> Intersection(const Circle<float >& c, const Line<float >& line);
+  template Vector2DArray<float> Intersection(const Circle<int   >& c, const Line<int   >& line);
+  template Vector2DArray<float> Intersection(const Circle<short >& c, const Line<short >& line);
+
+  template Vector2DArray<float> Intersection(const Circle<double>& c, const HalfLine<double>& line);
+  template Vector2DArray<float> Intersection(const Circle<float >& c, const HalfLine<float >& line);
+  template Vector2DArray<float> Intersection(const Circle<int   >& c, const HalfLine<int   >& line);
+  template Vector2DArray<float> Intersection(const Circle<short >& c, const HalfLine<short >& line);
+
 }
 #endif
