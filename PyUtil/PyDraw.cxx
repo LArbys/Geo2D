@@ -19,7 +19,6 @@ namespace geo2d {
   {
     float carray[m.rows * m.cols];
     for(size_t i=0; i<m.rows; ++i) {
-      const unsigned char* rowdata = m.ptr<unsigned char>(i);
       for(size_t j=0; j<m.cols; ++j) {
 	carray[i*m.cols+j] = (float)(int(m.at<uchar>(i,j)));
       }
