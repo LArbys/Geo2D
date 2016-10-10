@@ -15,7 +15,7 @@
 #define LINE_H
 
 #include <iostream>
-#include "Vector2D.h"
+#include "Vector.h"
 
 namespace geo2d {
   /**
@@ -29,11 +29,11 @@ namespace geo2d {
   public:
     
     /// Default constructor
-    Line(const Vector2D<T>& point, const Vector2D<T>& direction)
+    Line(const Vector<T>& point, const Vector<T>& direction)
       : pt(point), dir(direction)
     {}
     
-    Line(const Vector2D<T>& point, double angle)
+    Line(const Vector<T>& point, double angle)
       : pt(point), dir(geo2d::dir<T>(angle))
     {}
 
@@ -44,8 +44,8 @@ namespace geo2d {
     /// Default destructor
     ~Line(){}
 
-    Vector2D<T> pt;
-    Vector2D<float> dir;
+    Vector<T> pt;
+    Vector<float> dir;
 
     T x(T y) const;
     T y(T x) const;

@@ -14,8 +14,8 @@
 #ifndef CIRCLE_H
 #define CIRCLE_H
 
-#include "Vector2D.h"
-#include "Vector2DArray.h"
+#include "Vector.h"
+#include "VectorArray.h"
 
 namespace geo2d {
   /**
@@ -31,11 +31,11 @@ namespace geo2d {
     /// Default constructor
     Circle() : center(), radius(1) {}
     
-    Circle(const Vector2D<T>&, const T);
+    Circle(const Vector<T>&, const T);
 
     Circle(const T, const T, const T);
 
-    Circle(const Vector2DArray<T>& pts);
+    Circle(const VectorArray<T>& pts);
     
     /// Default destructor
     ~Circle(){}

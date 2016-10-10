@@ -6,11 +6,11 @@
 namespace geo2d {
   
   template <class T>
-  float Signed2DTriArea(const Vector2D<T>& a,const Vector2D<T>& b, const Vector2D<T>& c)
+  float Signed2DTriArea(const Vector<T>& a,const Vector<T>& b, const Vector<T>& c)
   { return (a.x - c.x) * (b.y - c.y) - (a.y - c.y) * (b.x - c.x); }
   
   template <class T>
-  bool SegmentIntersection(const LineSegment<T>& line1,const LineSegment<T>& line2,Vector2D<T>& inter_pt) {
+  bool SegmentIntersection(const LineSegment<T>& line1,const LineSegment<T>& line2,Vector<T>& inter_pt) {
     float t;
     float a1 = Signed2DTriArea(line1.pt1, line1.pt2, line2.pt2);
     float a2 = Signed2DTriArea(line1.pt1, line1.pt2, line2.pt1);
@@ -27,7 +27,7 @@ namespace geo2d {
   }
   
   template <class T>
-  bool SegmentIntersection(const Vector2D<T>& a,const Vector2D<T>& b,const Vector2D<T>& c,const Vector2D<T>& d) {
+  bool SegmentIntersection(const Vector<T>& a,const Vector<T>& b,const Vector<T>& c,const Vector<T>& d) {
     float t;
     float a1 = Signed2DTriArea(a,b,d);
     float a2 = Signed2DTriArea(a,b,c);
@@ -43,7 +43,7 @@ namespace geo2d {
   }
 
   template <class T>
-  bool SegmentIntersection(const Vector2D<T>& a,const Vector2D<T>& b,const Vector2D<T>& c,const Vector2D<T>& d,Vector2D<T>& inter_pt) {
+  bool SegmentIntersection(const Vector<T>& a,const Vector<T>& b,const Vector<T>& c,const Vector<T>& d,Vector<T>& inter_pt) {
     float t;
     float a1 = Signed2DTriArea(a,b,d);
     float a2 = Signed2DTriArea(a,b,c);
@@ -62,10 +62,10 @@ namespace geo2d {
 
   
   template <class T>
-  Vector2DArray<float> Intersection(const Circle<T>& circle, const HalfLine<T>& line)
+  VectorArray<float> Intersection(const Circle<T>& circle, const HalfLine<T>& line)
   {
-    Vector2DArray<float> res;
-    Vector2D<float> d, pt, center;
+    VectorArray<float> res;
+    Vector<float> d, pt, center;
     d.x  = line.dir.x;  d.y = line.dir.y;
     pt.x = line.pt.x;  pt.y = line.pt.y;
     center.x = circle.center.x;
@@ -93,10 +93,10 @@ namespace geo2d {
   }
 
   template <class T>
-  Vector2DArray<float> Intersection(const Circle<T>& circle, const LineSegment<T>& line)
+  VectorArray<float> Intersection(const Circle<T>& circle, const LineSegment<T>& line)
   {
-    Vector2DArray<float> res;
-    Vector2D<float> d, pt, center;
+    VectorArray<float> res;
+    Vector<float> d, pt, center;
     d.x = line.pt2.x - line.pt1.x;
     d.y = line.pt2.y - line.pt1.y;
     d /= geo2d::length(d);
@@ -126,10 +126,10 @@ namespace geo2d {
   }
 
   template <class T>
-  Vector2DArray<float> Intersection(const Circle<T>& circle, const Line<T>& line)
+  VectorArray<float> Intersection(const Circle<T>& circle, const Line<T>& line)
   {
-    Vector2DArray<float> res;
-    Vector2D<float> d, pt, center;
+    VectorArray<float> res;
+    Vector<float> d, pt, center;
     d.x  = line.dir.x;  d.y = line.dir.y;
     pt.x = line.pt.x;  pt.y = line.pt.y;
     center.x = circle.center.x;
@@ -155,22 +155,22 @@ namespace geo2d {
 
 
   template <class T>
-  Vector2D<float> LineIntersect(const Vector2D<T>& v1, const Vector2D<T>& v2, const Vector2D<T>& v3, const Vector2D<T>& v4){
+  Vector<float> LineIntersect(const Vector<T>& v1, const Vector<T>& v2, const Vector<T>& v3, const Vector<T>& v4){
     float d   = (v1.x-v2.x)*(v3.y-v4.y) - (v1.y-v2.y)*(v3.x-v4.x);
     float x = ( (v1.x*v2.y - v1.y*v2.x)*(v3.x-v4.x) - (v1.x-v2.x)*(v3.x*v4.y-v3.y*v4.x) ) / d;
     float y = ( (v1.x*v2.y - v1.y*v2.x)*(v3.y-v4.y) - (v1.y-v2.y)*(v3.x*v4.y-v3.y*v4.x) ) / d;
-    return geo2d::Vector2D<float>(x,y);
+    return geo2d::Vector<float>(x,y);
   }
 
   template <class T>
-  Vector2D<float> ClosestPtOnLine(const Vector2D<T>& l_pt1, const Vector2D<T>& l_pt2, const Vector2D<T>& pt) {
+  Vector<float> ClosestPtOnLine(const Vector<T>& l_pt1, const Vector<T>& l_pt2, const Vector<T>& pt) {
     float k  = ((l_pt2.y-l_pt1.y) * (pt.x-l_pt1.x) - (l_pt2.x-l_pt1.x) * (pt.y-l_pt1.y))
       / (std::pow(l_pt2.y-l_pt1.y,2) + std::pow(l_pt2.x-l_pt1.x,2));
     
     float x4 = pt.x - k * (l_pt2.y-l_pt1.y);
     float y4 = pt.y + k * (l_pt2.x-l_pt1.x);
     
-    return geo2d::Vector2D<float>(x4,y4);
+    return geo2d::Vector<float>(x4,y4);
   }
   
 }

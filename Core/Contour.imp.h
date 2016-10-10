@@ -6,7 +6,7 @@
 namespace geo2d {
 
   template <class T>
-  double contains(const Vector2DArray<T>& contour, Vector2D<T>& pt, bool measureDist)
+  double contains(const VectorArray<T>& contour, Vector<T>& pt, bool measureDist)
   { return ::cv::pointPolygonTest(contour,pt,measureDist); }
 
 }

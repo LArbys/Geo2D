@@ -28,10 +28,10 @@
 
 #pragma link C++ namespace geo2d+;
 
-#pragma link C++ class geo2d::Vector2DArray<double>+;
-#pragma link C++ class geo2d::Vector2DArray<float>+;
-#pragma link C++ class geo2d::Vector2DArray<short>+;
-#pragma link C++ class geo2d::Vector2DArray<int>+;
+#pragma link C++ class geo2d::VectorArray<double>+;
+#pragma link C++ class geo2d::VectorArray<float>+;
+#pragma link C++ class geo2d::VectorArray<short>+;
+#pragma link C++ class geo2d::VectorArray<int>+;
 
 //#pragma link C++ class geo2d::Contour+;
 #pragma link C++ class geo2d::Rect+;

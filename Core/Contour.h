@@ -14,7 +14,7 @@
 #ifndef CONTOUR_H
 #define CONTOUR_H
 
-#include "Vector2DArray.h"
+#include "VectorArray.h"
 namespace geo2d {
   /**
      \class Contour
@@ -22,10 +22,10 @@ namespace geo2d {
      doxygen documentation!
   */
   template <class T>
-  using Contour = Vector2DArray<T>;
+  using Contour = VectorArray<T>;
 
   template<class T>
-  double contains(const Vector2DArray<T>& contour, Vector2D<T>& pt, bool measureDist);
+  double contains(const VectorArray<T>& contour, Vector<T>& pt, bool measureDist);
 }
 
 #endif

@@ -36,7 +36,7 @@ namespace geo2d {
     return PyArray_Return(array);
   }
 
-  PyObject* PyDraw::points(const Vector2DArray<float>& input) const
+  PyObject* PyDraw::points(const VectorArray<float>& input) const
   {
     float carray[input.size()*2];
     for(size_t i=0; i<input.size(); ++i) {

@@ -1,23 +1,23 @@
-#ifndef VECTOR2DARRAY_TEMPLATE_H
-#define VECTOR2DARRAY_TEMPLATE_H
+#ifndef VECTORARRAY_TEMPLATE_H
+#define VECTORARRAY_TEMPLATE_H
 
-#include "Vector2DArray.h"
+#include "VectorArray.h"
 #include "spoon.h"
 
 namespace geo2d {
 
   template <class T>
-  Vector2DArray<T>::Vector2DArray(const std::vector<T>& xs, const std::vector<T>& ys)
+  VectorArray<T>::VectorArray(const std::vector<T>& xs, const std::vector<T>& ys)
   {
     if(xs.size() != ys.size()) throw spoon("Provided X and Y points length do not match!");
     for(size_t idx=0; idx<xs.size(); ++idx) {
-      Vector2D<T> pt(xs[idx],ys[idx]);
+      Vector<T> pt(xs[idx],ys[idx]);
       this->emplace_back(std::move(pt));
     }
   }
 
   template <class T>
-  T Vector2DArray<T>::length() const
+  T VectorArray<T>::length() const
   {
     T res=0;
     for(size_t idx=0; idx+1<this->size(); ++idx) {
@@ -27,7 +27,7 @@ namespace geo2d {
   }
 
   template <class T>
-  bool Vector2DArray<T>::is_longer(T length) const
+  bool VectorArray<T>::is_longer(T length) const
   {
     T lsum=0;
     for(size_t idx=0; idx+1<this->size(); ++idx) {
@@ -38,7 +38,7 @@ namespace geo2d {
   }
 
   template <class T>
-  Vector2D<T> Vector2DArray<T>::dir(size_t idx) const
+  Vector<T> VectorArray<T>::dir(size_t idx) const
   {
     if(idx >= this->size()) throw spoon("Requested index out of range!");
     if(this->size() <2) throw spoon("Array length < 2 ... no direction can be defined!");
@@ -50,9 +50,9 @@ namespace geo2d {
 
 }
 
-template class geo2d::Vector2DArray<double>;
-template class geo2d::Vector2DArray<float >;
-template class geo2d::Vector2DArray<int   >;
-template class geo2d::Vector2DArray<short >;
+template class geo2d::VectorArray<double>;
+template class geo2d::VectorArray<float >;
+template class geo2d::VectorArray<int   >;
+template class geo2d::VectorArray<short >;
 
 #endif

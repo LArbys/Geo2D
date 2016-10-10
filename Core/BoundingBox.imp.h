@@ -5,9 +5,9 @@
 namespace geo2d {
 
   template <class T>
-  Vector2DArray<float> edges(const cv::Rect_<T>& box)
+  VectorArray<float> edges(const cv::Rect_<T>& box)
   {
-    Vector2DArray<float> res;
+    VectorArray<float> res;
     res.resize(4);
     res[0].x = box.x;             res[0].y = box.y;
     res[1].x = box.x + box.width; res[1].y = box.y;
@@ -17,11 +17,11 @@ namespace geo2d {
   }
 
   template <class T>
-  bool contains(const cv::Rect_<T>& box, const Vector2D<T>& pt)
+  bool contains(const cv::Rect_<T>& box, const Vector<T>& pt)
   { return box.contains(pt); }
 
   template <class T>
-  bool contains(const cv::RotatedRect& box, const Vector2D<T>& pt)
+  bool contains(const cv::RotatedRect& box, const Vector<T>& pt)
   {
     //
     // Box is aligned

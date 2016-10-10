@@ -15,7 +15,7 @@
 #define LINESEGMENT_H
 
 #include <iostream>
-#include "Vector2D.h"
+#include "Vector.h"
 
 namespace geo2d {
   /**
@@ -29,8 +29,8 @@ namespace geo2d {
   public:
     
     /// Default constructor
-    LineSegment(const Vector2D<T>& point1 = Vector2D<T>(),
-		const Vector2D<T>& point2 = Vector2D<T>())
+    LineSegment(const Vector<T>& point1 = Vector<T>(),
+		const Vector<T>& point2 = Vector<T>())
       : pt1(point1), pt2(point2)
     {}
 
@@ -53,7 +53,7 @@ namespace geo2d {
   template <class T>
   double angle   (const LineSegment<T>&);
   template <class T>
-  Vector2D<T> dir(const LineSegment<T>&);
+  Vector<T> dir(const LineSegment<T>&);
 }
 
 #endif

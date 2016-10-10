@@ -8,15 +8,15 @@
 namespace geo2d {
 
   template <class T>
-  T ccw(const Vector2D<T>& a, const Vector2D<T>& b, const Vector2D<T> c)
+  T ccw(const Vector<T>& a, const Vector<T>& b, const Vector<T> c)
   { return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x); }
 
   template <class T>
-  bool is_left(const Vector2D<T>& a, const Vector2D<T>& b)
+  bool is_left(const Vector<T>& a, const Vector<T>& b)
   { return (a.x < b.x || (a.x == b.x && a.y < b.y)); }
 
   template <class T>
-  Vector2DArray<T> AlgoConvexHull<T>::MonotoneChain(Vector2DArray<T> pts)
+  VectorArray<T> AlgoConvexHull<T>::MonotoneChain(VectorArray<T> pts)
   {
 
     // Sort our points in lexicographic order.
@@ -24,7 +24,7 @@ namespace geo2d {
     std::sort(pts.begin(), pts.end(), is_left<T>);
 
     // Find the lower half of the convex hull.
-    Vector2DArray<T> lower;
+    VectorArray<T> lower;
     for (auto const& pt : pts) {
       // Pop off any points that make a convex angle with *it
       while (lower.size() >= 2 && ccw(*(lower.rbegin() + 1), *(lower.rbegin()), pt) >= 0) {
@@ -34,7 +34,7 @@ namespace geo2d {
     }
 
     // Find the upper half of the convex hull.
-    Vector2DArray<T> upper;
+    VectorArray<T> upper;
     for (auto const& pt : pts) {
       // Pop off any points that make a convex angle with *it
       while (upper.size() >= 2 && ccw(*(upper.rbegin() + 1), *(upper.rbegin()), pt) <= 0) {
@@ -43,7 +43,7 @@ namespace geo2d {
       upper.push_back(pt);
     }
 
-    Vector2DArray<T> hull;
+    VectorArray<T> hull;
     hull.insert(hull.end(), lower.begin(), lower.end());
     // Both hulls include both endpoints, so leave them out when we
     // append the upper hull.
@@ -53,11 +53,11 @@ namespace geo2d {
   }
 
   template <class T>
-  cv::Rect_<T> AlgoConvexHull<T>::test(Vector2DArray<T> pts)
+  cv::Rect_<T> AlgoConvexHull<T>::test(VectorArray<T> pts)
   { return cv::boundingRect(pts); }
 
   template <class T>
-  RotatedRect AlgoConvexHull<T>::test2(Vector2DArray<T> pts)
+  RotatedRect AlgoConvexHull<T>::test2(VectorArray<T> pts)
   { return cv::minAreaRect(pts); }
 
 }

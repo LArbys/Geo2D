@@ -25,10 +25,10 @@ namespace geo2d {
   template double angle(const LineSegment<int   >&);
   template double angle(const LineSegment<short >&);
 
-  template Vector2D<double> dir(const LineSegment<double>&);
-  template Vector2D<float > dir(const LineSegment<float >&);
-  template Vector2D<int   > dir(const LineSegment<int   >&);
-  template Vector2D<short > dir(const LineSegment<short >&);
+  template Vector<double> dir(const LineSegment<double>&);
+  template Vector<float > dir(const LineSegment<float >&);
+  template Vector<int   > dir(const LineSegment<int   >&);
+  template Vector<short > dir(const LineSegment<short >&);
 
 }
 #endif

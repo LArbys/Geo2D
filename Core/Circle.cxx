@@ -7,7 +7,7 @@
 namespace geo2d {
 
   template <class T>
-  Circle<T>::Circle(const Vector2D<T>& c, const T r)
+  Circle<T>::Circle(const Vector<T>& c, const T r)
     : center(),
       radius(r)
   { center.x = c.x; center.y = c.y;}
@@ -19,9 +19,9 @@ namespace geo2d {
   {center.x = x; center.y = y;}
 
   template <class T>
-  Circle<T>::Circle(const Vector2DArray<T>& pts)
+  Circle<T>::Circle(const VectorArray<T>& pts)
   {
-    Vector2D<float> pt;
+    Vector<float> pt;
     float r;
     ::cv::minEnclosingCircle(pts, pt, r);
     center.x = (T)(pt.x);

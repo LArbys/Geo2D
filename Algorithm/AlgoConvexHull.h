@@ -14,7 +14,7 @@
 #ifndef ALGOCONVEXHULL_H
 #define ALGOCONVEXHULL_H
 
-#include "Core/Vector2DArray.h"
+#include "Core/VectorArray.h"
 #include "Core/BoundingBox.h"
 namespace geo2d {
   /**
@@ -33,11 +33,11 @@ namespace geo2d {
     /// Default destructor
     ~AlgoConvexHull(){}
 
-    Vector2DArray<T> MonotoneChain(Vector2DArray<T> pts);
+    VectorArray<T> MonotoneChain(VectorArray<T> pts);
 
-    cv::Rect_<T> test(Vector2DArray<T> pts);
+    cv::Rect_<T> test(VectorArray<T> pts);
 
-    RotatedRect test2(Vector2DArray<T> pts);
+    RotatedRect test2(VectorArray<T> pts);
     
   protected:
 

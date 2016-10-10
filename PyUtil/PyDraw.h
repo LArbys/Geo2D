@@ -27,7 +27,7 @@ typedef _object PyObject;
 
 #include <iostream>
 #include "Core/BoundingBox.h"
-#include "Core/Vector2DArray.h"
+#include "Core/VectorArray.h"
 
 namespace geo2d {
   /**
@@ -44,7 +44,7 @@ namespace geo2d {
     /// Default destructor
     ~PyDraw(){}
     PyObject* image  (const cv::Mat                ) const;
-    PyObject* points (const Vector2DArray<float >& ) const;
+    PyObject* points (const VectorArray<float >& ) const;
     PyObject* rect   (const geo2d::Rect&           ) const;
     PyObject* rrect  (const geo2d::RotatedRect&    ) const;
 

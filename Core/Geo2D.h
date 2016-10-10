@@ -5,36 +5,36 @@
 #include "HalfLine.h"
 #include "LineSegment.h"
 #include "Circle.h"
-#include "Vector2DArray.h"
+#include "VectorArray.h"
 
 namespace geo2d {
 
   template <class T>
-  float Signed2DTriArea(const Vector2D<T>&,const Vector2D<T>&, const Vector2D<T>&);
+  float Signed2DTriArea(const Vector<T>&,const Vector<T>&, const Vector<T>&);
   
   template <class T>
-  bool SegmentIntersection(const LineSegment<T>&,const LineSegment<T>&,Vector2D<T>&);
+  bool SegmentIntersection(const LineSegment<T>&,const LineSegment<T>&,Vector<T>&);
 
   template <class T>
-  bool SegmentIntersection(const Vector2D<T>&,const Vector2D<T>&,const Vector2D<T>&,const Vector2D<T>&);
+  bool SegmentIntersection(const Vector<T>&,const Vector<T>&,const Vector<T>&,const Vector<T>&);
 
   template <class T>
-  bool SegmentIntersection(const Vector2D<T>&,const Vector2D<T>&,const Vector2D<T>&,const Vector2D<T>&,Vector2D<T>&);
+  bool SegmentIntersection(const Vector<T>&,const Vector<T>&,const Vector<T>&,const Vector<T>&,Vector<T>&);
 
   template <class T>
-  Vector2DArray<float> Intersection(const Circle<T>& c, const LineSegment<T>& line);
+  VectorArray<float> Intersection(const Circle<T>& c, const LineSegment<T>& line);
 
   template <class T>
-  Vector2DArray<float> Intersection(const Circle<T>& c, const HalfLine<T>& line);
+  VectorArray<float> Intersection(const Circle<T>& c, const HalfLine<T>& line);
 
   template <class T>
-  Vector2DArray<float> Intersection(const Circle<T>& c, const Line<T>& line);
+  VectorArray<float> Intersection(const Circle<T>& c, const Line<T>& line);
 
   template <class T>
-  Vector2D<float> LineIntersect(const Vector2D<T>& v1, const Vector2D<T>& v2, const Vector2D<T>& v3, const Vector2D<T>& v4);
+  Vector<float> LineIntersect(const Vector<T>& v1, const Vector<T>& v2, const Vector<T>& v3, const Vector<T>& v4);
 
   template <class T>
-  Vector2D<float> ClosestPtOnLine(const Vector2D<T>& l_pt1, const Vector2D<T>& l_pt2, const Vector2D<T>& pt);
+  Vector<float> ClosestPtOnLine(const Vector<T>& l_pt1, const Vector<T>& l_pt2, const Vector<T>& pt);
   
 }
 

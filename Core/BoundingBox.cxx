@@ -13,9 +13,9 @@ template class cv::Rect_<short >;
 
 namespace geo2d {
 
-  Vector2DArray<float> edges(const cv::RotatedRect& box)
+  VectorArray<float> edges(const cv::RotatedRect& box)
   {
-    Vector2DArray<float> res;
+    VectorArray<float> res;
     res.resize(4);
     box.points(&res[0]);
     return res;
@@ -23,9 +23,9 @@ namespace geo2d {
 
 
 
-  template Vector2DArray<float> edges(const cv::Rect_<double>&);
-  template Vector2DArray<float> edges(const cv::Rect_<float >&);
-  template Vector2DArray<float> edges(const cv::Rect_<int   >&);
-  template Vector2DArray<float> edges(const cv::Rect_<short >&);
+  template VectorArray<float> edges(const cv::Rect_<double>&);
+  template VectorArray<float> edges(const cv::Rect_<float >&);
+  template VectorArray<float> edges(const cv::Rect_<int   >&);
+  template VectorArray<float> edges(const cv::Rect_<short >&);
 
 }
