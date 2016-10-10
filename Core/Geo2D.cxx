@@ -11,41 +11,15 @@ namespace geo2d {
   template float Signed2DTriArea(const Vector<int   >& a,const Vector<int   >& b, const Vector<int   >& c);
   template float Signed2DTriArea(const Vector<short >& a,const Vector<short >& b, const Vector<short >& c);
 
-  template bool SegmentIntersection(const LineSegment<double>& a,const LineSegment<double>& b, Vector<double>& inter_pt);
-  template bool SegmentIntersection(const LineSegment<float >& a,const LineSegment<float >& b, Vector<float >& inter_pt);
-  template bool SegmentIntersection(const LineSegment<int   >& a,const LineSegment<int   >& b, Vector<int   >& inter_pt);
-  template bool SegmentIntersection(const LineSegment<short >& a,const LineSegment<short >& b, Vector<short >& inter_pt);
+  template bool Intersection(const LineSegment<double>& line1,const LineSegment<double>& line2, Vector<double>& inter_pt);
+  template bool Intersection(const LineSegment<float >& line1,const LineSegment<float >& line2, Vector<float >& inter_pt);
+  template bool Intersection(const LineSegment<int   >& line1,const LineSegment<int   >& line2, Vector<int   >& inter_pt);
+  template bool Intersection(const LineSegment<short >& line1,const LineSegment<short >& line2, Vector<short >& inter_pt);
 
-
-  template bool SegmentIntersection(const Vector<double>& a, const Vector<double>& b, const Vector<double>& c, const Vector<double>& d);
-  template bool SegmentIntersection(const Vector<float>& a, const Vector<float>& b, const Vector<float>& c, const Vector<float>& d);
-  template bool SegmentIntersection(const Vector<int>& a, const Vector<int>& b, const Vector<int>& c, const Vector<int>& d);
-  template bool SegmentIntersection(const Vector<short>& a, const Vector<short>& b, const Vector<short>& c, const Vector<short>& d);
-
-  
-  template bool SegmentIntersection(const Vector<double>& a,
-				    const Vector<double>& b,
-				    const Vector<double>& c,
-				    const Vector<double>& d,
-				    Vector<double>& inter_pt);
-  
-  template bool SegmentIntersection(const Vector<float>& a,
-				    const Vector<float>& b,
-				    const Vector<float>& c,
-				    const Vector<float>& d,
-				    Vector<float>& inter_pt);
-  
-  template bool SegmentIntersection(const Vector<int>& a,
-				    const Vector<int>& b,
-				    const Vector<int>& c,
-				    const Vector<int>& d,
-				    Vector<int>& inter_pt);
-  
-  template bool SegmentIntersection(const Vector<short>& a,
-				    const Vector<short>& b,
-				    const Vector<short>& c,
-				    const Vector<short>& d,
-				    Vector<short>& inter_pt);
+  template bool Intersection(const LineSegment<double>& line1,const LineSegment<double>& line2);
+  template bool Intersection(const LineSegment<float >& line1,const LineSegment<float >& line2);
+  template bool Intersection(const LineSegment<int   >& line1,const LineSegment<int   >& line2);
+  template bool Intersection(const LineSegment<short >& line1,const LineSegment<short >& line2);
 
   template VectorArray<float> Intersection(const Circle<double>& c, const LineSegment<double>& line);
   template VectorArray<float> Intersection(const Circle<float >& c, const LineSegment<float >& line);
@@ -62,16 +36,14 @@ namespace geo2d {
   template VectorArray<float> Intersection(const Circle<int   >& c, const HalfLine<int   >& line);
   template VectorArray<float> Intersection(const Circle<short >& c, const HalfLine<short >& line);
 
-
-
-  template Vector<float> LineIntersect(const Vector<double>& v1, const Vector<double>& v2, const Vector<double>& v3, const Vector<double>& v4);
-  template Vector<float> LineIntersect(const Vector<float >& v1, const Vector<float >& v2, const Vector<float >& v3, const Vector<float >& v4);
-  template Vector<float> LineIntersect(const Vector<int   >& v1, const Vector<int   >& v2, const Vector<int   >& v3, const Vector<int   >& v4);
-  template Vector<float> LineIntersect(const Vector<short >& v1, const Vector<short >& v2, const Vector<short >& v3, const Vector<short >& v4);
-
+  template Vector<float> Intersection(const Line<double>& line1, const Line<double>& line2);
+  template Vector<float> Intersection(const Line<float >& line1, const Line<float >& line2);
+  template Vector<float> Intersection(const Line<int   >& line1, const Line<int   >& line2);
+  template Vector<float> Intersection(const Line<short >& line1, const Line<short >& line2);
+  
   template Vector<float> ClosestPtOnLine(const Vector<double>& l_pt1, const Vector<double>& l_pt2, const Vector<double>& pt);
   template Vector<float> ClosestPtOnLine(const Vector<float >& l_pt1, const Vector<float >& l_pt2, const Vector<float  >& pt);
-  template Vector<float> ClosestPtOnLine(const Vector<int   >& l_pt1, const Vector<int   >& l_pt2, const Vector<int      >& pt);
+  template Vector<float> ClosestPtOnLine(const Vector<int   >& l_pt1, const Vector<int   >& l_pt2, const Vector<int    >& pt);
   template Vector<float> ClosestPtOnLine(const Vector<short >& l_pt1, const Vector<short >& l_pt2, const Vector<short  >& pt);
   
   

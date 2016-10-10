@@ -10,7 +10,7 @@ namespace geo2d {
   { return (a.x - c.x) * (b.y - c.y) - (a.y - c.y) * (b.x - c.x); }
   
   template <class T>
-  bool SegmentIntersection(const LineSegment<T>& line1,const LineSegment<T>& line2,Vector<T>& inter_pt) {
+  bool Intersection(const LineSegment<T>& line1,const LineSegment<T>& line2,Vector<T>& inter_pt) {
     float t;
     float a1 = Signed2DTriArea(line1.pt1, line1.pt2, line2.pt2);
     float a2 = Signed2DTriArea(line1.pt1, line1.pt2, line2.pt1);
@@ -25,41 +25,23 @@ namespace geo2d {
     }
     return false;
   }
-  
+
   template <class T>
-  bool SegmentIntersection(const Vector<T>& a,const Vector<T>& b,const Vector<T>& c,const Vector<T>& d) {
+  bool Intersection(const LineSegment<T>& line1,const LineSegment<T>& line2) {
     float t;
-    float a1 = Signed2DTriArea(a,b,d);
-    float a2 = Signed2DTriArea(a,b,c);
+    float a1 = Signed2DTriArea(line1.pt1, line1.pt2, line2.pt2);
+    float a2 = Signed2DTriArea(line1.pt1, line1.pt2, line2.pt1);
     if (a1 * a2 < 0.0f) {
-      float a3 = Signed2DTriArea(c,d,a);
+      float a3 = Signed2DTriArea(line2.pt1, line2.pt2, line1.pt1); 
       float a4 = a3 + a2 - a1;
       if (a3 * a4 < 0.0f) {
 	t = a3 / (a3 - a4);
-	return 1;
+	return true;
       }
     }
-    return 0;
-  }
-
-  template <class T>
-  bool SegmentIntersection(const Vector<T>& a,const Vector<T>& b,const Vector<T>& c,const Vector<T>& d,Vector<T>& inter_pt) {
-    float t;
-    float a1 = Signed2DTriArea(a,b,d);
-    float a2 = Signed2DTriArea(a,b,c);
-    if (a1 * a2 < 0.0f) {
-      float a3 = Signed2DTriArea(c,d,a);
-      float a4 = a3 + a2 - a1;
-      if (a3 * a4 < 0.0f) {
-	t = a3 / (a3 - a4);
-	inter_pt = a + t * (b - a);
-	return 1;
-      }
-    }
-    return 0;
+    return false;
   }
   
-
   
   template <class T>
   VectorArray<float> Intersection(const Circle<T>& circle, const HalfLine<T>& line)
@@ -155,11 +137,13 @@ namespace geo2d {
 
 
   template <class T>
-  Vector<float> LineIntersect(const Vector<T>& v1, const Vector<T>& v2, const Vector<T>& v3, const Vector<T>& v4){
-    float d   = (v1.x-v2.x)*(v3.y-v4.y) - (v1.y-v2.y)*(v3.x-v4.x);
-    float x = ( (v1.x*v2.y - v1.y*v2.x)*(v3.x-v4.x) - (v1.x-v2.x)*(v3.x*v4.y-v3.y*v4.x) ) / d;
-    float y = ( (v1.x*v2.y - v1.y*v2.x)*(v3.y-v4.y) - (v1.y-v2.y)*(v3.x*v4.y-v3.y*v4.x) ) / d;
-    return geo2d::Vector<float>(x,y);
+  Vector<float> Intersection(const Line<T>& line1, const Line<T>& line2) {
+
+    float t = (line1.dir.x - line2.dir.x) / (line2.pt.x - line1.pt.x);
+    float px = line1.pt.x + line1.dir.x*t;
+    float py = line1.pt.y + line1.dir.y*t;
+    
+    return Vector<float>(px,py);
   }
 
   template <class T>
