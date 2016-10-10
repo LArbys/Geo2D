@@ -13,7 +13,13 @@ namespace geo2d {
   float Signed2DTriArea(const Vector2D<T>&,const Vector2D<T>&, const Vector2D<T>&);
   
   template <class T>
-  bool SegmentSegmentTest(const LineSegment<T>&,const LineSegment<T>&,Vector2D<T>&);
+  bool SegmentIntersection(const LineSegment<T>&,const LineSegment<T>&,Vector2D<T>&);
+
+  template <class T>
+  bool SegmentIntersection(const Vector2D<T>&,const Vector2D<T>&,const Vector2D<T>&,const Vector2D<T>&);
+
+  template <class T>
+  bool SegmentIntersection(const Vector2D<T>&,const Vector2D<T>&,const Vector2D<T>&,const Vector2D<T>&,Vector2D<T>&);
 
   template <class T>
   Vector2DArray<float> Intersection(const Circle<T>& c, const LineSegment<T>& line);
@@ -24,6 +30,12 @@ namespace geo2d {
   template <class T>
   Vector2DArray<float> Intersection(const Circle<T>& c, const Line<T>& line);
 
+  template <class T>
+  Vector2D<float> LineIntersect(const Vector2D<T>& v1, const Vector2D<T>& v2, const Vector2D<T>& v3, const Vector2D<T>& v4);
+
+  template <class T>
+  Vector2D<float> ClosestPtOnLine(const Vector2D<T>& l_pt1, const Vector2D<T>& l_pt2, const Vector2D<T>& pt);
+  
 }
 
 

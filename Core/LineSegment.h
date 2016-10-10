@@ -15,7 +15,7 @@
 #define LINESEGMENT_H
 
 #include <iostream>
-#include <Vector2D.h>
+#include "Vector2D.h"
 
 namespace geo2d {
   /**

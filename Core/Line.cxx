@@ -15,7 +15,7 @@ namespace geo2d {
   template double angle(const Line<float >&);
   template double angle(const Line<int   >&);
   template double angle(const Line<short >&);
-
+  
 }
 
 #endif
