@@ -1,10 +1,8 @@
 #ifndef GEO2DIMP_H
 #define GEO2DIMP_H
 
-#include <LineSegment.h>
-
 namespace geo2d {
-  
+
   template <class T>
   float Signed2DTriArea(const Vector<T>& a,const Vector<T>& b, const Vector<T>& c)
   { return (a.x - c.x) * (b.y - c.y) - (a.y - c.y) * (b.x - c.x); }
@@ -146,15 +144,38 @@ namespace geo2d {
     return Vector<float>(px,py);
   }
 
+  //page 128 & 129;
   template <class T>
-  Vector<float> ClosestPtOnLine(const Vector<T>& l_pt1, const Vector<T>& l_pt2, const Vector<T>& pt) {
-    float k  = ((l_pt2.y-l_pt1.y) * (pt.x-l_pt1.x) - (l_pt2.x-l_pt1.x) * (pt.y-l_pt1.y))
-      / (std::pow(l_pt2.y-l_pt1.y,2) + std::pow(l_pt2.x-l_pt1.x,2));
-    
-    float x4 = pt.x - k * (l_pt2.y-l_pt1.y);
-    float y4 = pt.y + k * (l_pt2.x-l_pt1.x);
-    
-    return geo2d::Vector<float>(x4,y4);
+  float ClosestPoint(const LineSegment<T>& line, const Vector<T>& pt, Vector<T>& pt1, Vector<T>& pt2) {
+    Vector<T> ab = line.pt2 - line.pt1;
+    double t = ab.ddot(pt - line.pt1) / length2(ab);
+    if (t < 0.0f) t = 0.0f;
+    if (t > 1.0f) t = 1.0f;
+    pt1 = line.pt1 + t * ab;
+    pt2 = pt;
+    return dist(pt1,pt2);
+  }
+
+  //page 129
+  template <class T>
+  float ClosestPoint(const HalfLine<T>& line, const Vector<T>& pt, Vector<T>& pt1, Vector<T>& pt2) {
+    Vector<T> ab = line.dir;
+    double t = ab.ddot(pt - line.pt) / length2(ab);
+    if (t < 0.0f) t = 0.0f;
+    pt1 = line.pt + t * ab;
+    pt2 = pt;
+    return dist(pt1,pt2);
+  }
+
+
+  //page 129
+  template <class T>
+  float ClosestPoint(const Line<T>& line, const Vector<T>& pt, Vector<T>& pt1, Vector<T>& pt2) {
+    Vector<T> ab = line.dir;
+    double t = ab.ddot(pt - line.pt) / length2(ab);
+    pt1 = line.pt + t * ab;
+    pt2 = pt;
+    return dist(pt1,pt2);
   }
   
 }
