@@ -8,7 +8,7 @@ namespace geo2d {
   { return (a.x - c.x) * (b.y - c.y) - (a.y - c.y) * (b.x - c.x); }
   
   template <class T>
-  bool Intersection(const LineSegment<T>& line1,const LineSegment<T>& line2,Vector<T>& inter_pt) {
+  bool IntersectionPoint(const LineSegment<T>& line1,const LineSegment<T>& line2,Vector<T>& inter_pt) {
     float t;
     float a1 = Signed2DTriArea(line1.pt1, line1.pt2, line2.pt2);
     float a2 = Signed2DTriArea(line1.pt1, line1.pt2, line2.pt1);
@@ -25,7 +25,7 @@ namespace geo2d {
   }
 
   template <class T>
-  bool Intersection(const LineSegment<T>& line1,const LineSegment<T>& line2) {
+  bool Intersect(const LineSegment<T>& line1,const LineSegment<T>& line2) {
     float t;
     float a1 = Signed2DTriArea(line1.pt1, line1.pt2, line2.pt2);
     float a2 = Signed2DTriArea(line1.pt1, line1.pt2, line2.pt1);
@@ -40,9 +40,8 @@ namespace geo2d {
     return false;
   }
   
-  
   template <class T>
-  VectorArray<float> Intersection(const Circle<T>& circle, const HalfLine<T>& line)
+  VectorArray<float> IntersectionPoint(const Circle<T>& circle, const HalfLine<T>& line)
   {
     VectorArray<float> res;
     Vector<float> d, pt, center;
@@ -73,7 +72,7 @@ namespace geo2d {
   }
 
   template <class T>
-  VectorArray<float> Intersection(const Circle<T>& circle, const LineSegment<T>& line)
+  VectorArray<float> IntersectionPoint(const Circle<T>& circle, const LineSegment<T>& line)
   {
     VectorArray<float> res;
     Vector<float> d, pt, center;
@@ -106,7 +105,7 @@ namespace geo2d {
   }
 
   template <class T>
-  VectorArray<float> Intersection(const Circle<T>& circle, const Line<T>& line)
+  VectorArray<float> IntersectionPoint(const Circle<T>& circle, const Line<T>& line)
   {
     VectorArray<float> res;
     Vector<float> d, pt, center;
@@ -135,7 +134,7 @@ namespace geo2d {
 
 
   template <class T>
-  Vector<float> Intersection(const Line<T>& line1, const Line<T>& line2) {
+  Vector<float> IntersectionPoint(const Line<T>& line1, const Line<T>& line2) {
 
     float t = (line1.dir.x - line2.dir.x) / (line2.pt.x - line1.pt.x);
     float px = line1.pt.x + line1.dir.x*t;

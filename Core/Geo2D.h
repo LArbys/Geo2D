@@ -13,22 +13,22 @@ namespace geo2d {
   float Signed2DTriArea(const Vector<T>&,const Vector<T>&, const Vector<T>&);
 
   template <class T>
-  bool Intersection(const LineSegment<T>& line1,const LineSegment<T>& line2);
+  bool Intersect(const LineSegment<T>& line1,const LineSegment<T>& line2);
 
   template <class T>
-  bool Intersection(const LineSegment<T>& line1,const LineSegment<T>& line2,Vector<T>& inter_pt);
+  bool IntersectionPoint(const LineSegment<T>& line1,const LineSegment<T>& line2,Vector<T>& inter_pt);
 
   template <class T>
-  VectorArray<float> Intersection(const Circle<T>& c, const LineSegment<T>& line);
+  VectorArray<float> IntersectionPoint(const Circle<T>& c, const LineSegment<T>& line);
 
   template <class T>
-  VectorArray<float> Intersection(const Circle<T>& c, const HalfLine<T>& line);
+  VectorArray<float> IntersectionPoint(const Circle<T>& c, const HalfLine<T>& line);
 
   template <class T>
-  VectorArray<float> Intersection(const Circle<T>& c, const Line<T>& line);
+  VectorArray<float> IntersectionPoint(const Circle<T>& c, const Line<T>& line);
 
   template <class T>
-  Vector<float> Intersection(const Line<T>& line1, const Line<T>& line2);
+  Vector<float> IntersectionPoint(const Line<T>& line1, const Line<T>& line2);
 
   template <class T>
   float ClosestPoint(const LineSegment<T>& line, const Vector<T>& pt, Vector<T>& pt1, Vector<T>& pt2);
