@@ -136,7 +136,25 @@ namespace geo2d {
   template <class T>
   Vector<float> IntersectionPoint(const Line<T>& line1, const Line<T>& line2) {
 
-    float t = (line1.dir.x - line2.dir.x) / (line2.pt.x - line1.pt.x);
+    // T Ax=line1.pt.x;
+    // T Bx=line1.dir.x;
+    // T Cx=line2.pt.x;
+    // T Dx=line2.dir.x;
+
+    // T Ay=line1.pt.y;
+    // T By=line1.dir.y;
+    // T Cy=line2.pt.y;
+    // T Dy=line2.dir.y;
+
+    //lots of division, sorry
+    //float t = 1.0/(Bx - By*Dx/Dy) * ( (Cx-Ax) + (Dx/Dy)*(Ay - Cy) );
+
+    //a bit better
+    //float t = ( Dy*(Cx-Ax) + Dx*(Ay-Cy) ) / ( Bx - By*Dx );
+    float t = ( line2.dir.y*(line2.pt.x-line1.pt.x) + line2.dir.x*(line1.pt.y-line2.py.y) )
+      /
+      ( line1.dir.x - line1.dir.y*line2.dir.x );
+
     float px = line1.pt.x + line1.dir.x*t;
     float py = line1.pt.y + line1.dir.y*t;
     

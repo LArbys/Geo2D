@@ -1,5 +1,5 @@
-#ifndef VECTOR_IMP_H
-#define VECTOR_IMP_H
+#ifndef GEO2D_VECTOR_IMP_H
+#define GEO2D_VECTOR_IMP_H
 
 #include <cmath>
 

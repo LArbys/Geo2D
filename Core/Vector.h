@@ -11,8 +11,8 @@
 /** \addtogroup DataFormat
 
     @{*/
-#ifndef VECTOR_H
-#define VECTOR_H
+#ifndef GEO2D_VECTOR_H
+#define GEO2D_VECTOR_H
 
 #include "opencv2/core/mat.hpp"
 
