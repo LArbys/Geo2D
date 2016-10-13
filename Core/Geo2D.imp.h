@@ -151,7 +151,7 @@ namespace geo2d {
 
     //a bit better
     //float t = ( Dy*(Cx-Ax) + Dx*(Ay-Cy) ) / ( Bx - By*Dx );
-    float t = ( line2.dir.y*(line2.pt.x-line1.pt.x) + line2.dir.x*(line1.pt.y-line2.py.y) )
+    float t = ( line2.dir.y*(line2.pt.x-line1.pt.x) + line2.dir.x*(line1.pt.y-line2.pt.y) )
       /
       ( line1.dir.x - line1.dir.y*line2.dir.x );
 
