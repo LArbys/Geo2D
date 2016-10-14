@@ -2,6 +2,7 @@
 #define CIRCLE_CXX
 
 #include "Circle.h"
+#include "Circle.imp.h"
 #include "opencv2/imgproc/imgproc.hpp"
 
 namespace geo2d {
@@ -40,6 +41,12 @@ namespace geo2d {
     radius   = (T)r;
   }
 
+
+  template bool contains(const Circle<double>& circle, const Vector<double>& pt, double& measureDist);
+  template bool contains(const Circle<float >& circle, const Vector<float >& pt, double& measureDist);
+  template bool contains(const Circle<int   >& circle, const Vector<int   >& pt, double& measureDist);
+  template bool contains(const Circle<short >& circle, const Vector<short >& pt, double& measureDist);
+  
 }
 
 template class geo2d::Circle<double>;
