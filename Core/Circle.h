@@ -37,6 +37,8 @@ namespace geo2d {
 
     Circle(const VectorArray<T>& pts);
     
+    Circle(const std::vector<Vector<T> >& pts);
+
     /// Default destructor
     ~Circle(){}
 

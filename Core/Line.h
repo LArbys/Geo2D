@@ -28,7 +28,10 @@ namespace geo2d {
     
   public:
     
-    /// Default constructor
+    /// ROOT needs empty constructor probably
+    Line() {}
+
+    /// Default constructor    
     Line(const Vector<T>& point, const Vector<T>& direction)
       : pt(point), dir(direction)
     {}

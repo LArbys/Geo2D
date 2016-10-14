@@ -28,6 +28,17 @@ namespace geo2d {
     center.y = (T)(pt.y);
     radius   = (T)r;
   }
+  
+  template <class T>
+  Circle<T>::Circle(const std::vector<Vector<T> >& pts)
+  {
+    Vector<float> pt;
+    float r;
+    ::cv::minEnclosingCircle(pts, pt, r);
+    center.x = (T)(pt.x);
+    center.y = (T)(pt.y);
+    radius   = (T)r;
+  }
 
 }
 
@@ -35,4 +46,5 @@ template class geo2d::Circle<double>;
 template class geo2d::Circle<float >;
 template class geo2d::Circle<int   >;
 template class geo2d::Circle<short >;
+
 #endif
