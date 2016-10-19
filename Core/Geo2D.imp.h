@@ -12,10 +12,10 @@ namespace geo2d {
     float t;
     float a1 = Signed2DTriArea(line1.pt1, line1.pt2, line2.pt2);
     float a2 = Signed2DTriArea(line1.pt1, line1.pt2, line2.pt1);
-    if (a1 * a2 < 0.0f) {
+    if (a1 * a2 <= 0.0f) {
       float a3 = Signed2DTriArea(line2.pt1, line2.pt2, line1.pt1); 
       float a4 = a3 + a2 - a1;
-      if (a3 * a4 < 0.0f) {
+      if (a3 * a4 <= 0.0f) {
 	t = a3 / (a3 - a4);
 	inter_pt = line1.pt1 + t * (line1.pt2 - line1.pt1);
 	return true;
@@ -26,16 +26,12 @@ namespace geo2d {
 
   template <class T>
   bool Intersect(const LineSegment<T>& line1,const LineSegment<T>& line2) {
-    float t;
     float a1 = Signed2DTriArea(line1.pt1, line1.pt2, line2.pt2);
     float a2 = Signed2DTriArea(line1.pt1, line1.pt2, line2.pt1);
-    if (a1 * a2 < 0.0f) {
+    if (a1 * a2 <= 0.0f) {
       float a3 = Signed2DTriArea(line2.pt1, line2.pt2, line1.pt1); 
       float a4 = a3 + a2 - a1;
-      if (a3 * a4 < 0.0f) {
-	t = a3 / (a3 - a4);
-	return true;
-      }
+      if (a3 * a4 <= 0.0f) return true;
     }
     return false;
   }
