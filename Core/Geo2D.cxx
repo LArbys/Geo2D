@@ -56,5 +56,21 @@ namespace geo2d {
   template float ClosestPoint(const Line<int   >& line, const Vector<int   >& pt, Vector<int   >& pt1, Vector<int   >& pt2);
   template float ClosestPoint(const Line<short >& line, const Vector<short >& pt, Vector<short >& pt1, Vector<short >& pt2);
 
+  
+  template bool Clockwise(double Ax, double Ay, double Bx, double By, double Cx, double Cy);
+  template bool Clockwise(float Ax, float Ay, float Bx, float By, float Cx, float Cy);
+  template bool Clockwise(int Ax, int Ay, int Bx, int By, int Cx, int Cy);
+  template bool Clockwise(short Ax, short Ay, short Bx, short By, short Cx, short Cy);
+  
+  template bool SegmentOverlap(double Ax, double Ay, double Bx, double By,double Cx, double Cy, double Dx, double Dy);
+  template bool SegmentOverlap(float Ax, float Ay, float Bx, float By,float Cx, float Cy, float Dx, float Dy);
+  template bool SegmentOverlap(int Ax, int Ay, int Bx, int By,int Cx, int Cy, int Dx, int Dy);
+  template bool SegmentOverlap(short Ax, short Ay, short Bx, short By,short Cx, short Cy, short Dx, short Dy);
+
+  template void UntanglePolygon(std::vector<geo2d::Vector<double> >& points);
+  template void UntanglePolygon(std::vector<geo2d::Vector<float > >& points);
+  template void UntanglePolygon(std::vector<geo2d::Vector<int   > >& points);
+  template void UntanglePolygon(std::vector<geo2d::Vector<short > >& points);
+  
 }
 #endif

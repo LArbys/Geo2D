@@ -9,6 +9,16 @@
 
 namespace geo2d {
 
+
+  template <class T>
+  bool Clockwise(T Ax, T Ay, T Bx, T By, T Cx, T Cy);
+
+  template <class T>
+  bool SegmentOverlap(T Ax, T Ay, T Bx, T By,T Cx, T Cy, T Dx, T Dy);
+  
+  template <class T>
+  void UntanglePolygon(std::vector<geo2d::Vector<T> >& points);
+
   template <class T>
   float Signed2DTriArea(const Vector<T>&,const Vector<T>&, const Vector<T>&);
 

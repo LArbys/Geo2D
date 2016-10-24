@@ -3,19 +3,74 @@
 
 namespace geo2d {
 
+  //-------------------------------------------------------------------------
+  // determines if 3 points are arranged in a clock-wire oder or not
+  template <class T>
+  bool Clockwise(T Ax, T Ay, T Bx, T By, T Cx, T Cy)
+  {
+    return (Cy - Ay) * (Bx - Ax) > (By - Ay) * (Cx - Ax);
+  }
+
+  //------------------------------------------------------------
+  // determine if two segments intersect
+  template <class T>
+  bool SegmentOverlap(T Ax, T Ay, T Bx, T By,
+		      T Cx, T Cy, T Dx, T Dy)
+  {
+
+    bool overlap = ( (Clockwise(Ax, Ay, Cx, Cy, Dx, Dy) != Clockwise(Bx, By, Cx, Cy, Dx, Dy))
+		     and (Clockwise(Ax, Ay, Bx, By, Cx, Cy) != Clockwise(Ax, Ay, Bx, By, Dx, Dy)) );
+    return overlap;
+  }
+  
+  template <class T>
+  void UntanglePolygon(std::vector<geo2d::Vector<T> >& points)
+  {
+    
+    //loop over edge
+    for ( unsigned int i = 0; i < points.size() - 1; i++) {
+      T Ax = points[i].x;
+      T Ay = points[i].y;
+      T Bx = points[i+1].x;
+      T By = points[i+1].y;
+      //loop over edges that have not been checked yet
+      for (unsigned int j = i + 2; j < points.size() - 1; j++) {
+	//avoid consecutive segments
+	if ( points[i] == points[j + 1] )
+	  continue;
+	else {
+	  T Cx = points[j].x;
+	  T Cy = points[j].y;
+	  T Dx = points[j + 1].x;
+	  T Dy = points[j + 1].y;
+
+	  if ( SegmentOverlap( Ax, Ay, Bx, By, Cx, Cy, Dx, Dy ) ) {
+	    auto tmp = points[i + 1];
+	    points[i + 1] = points[j];
+	    points[j] = tmp;
+	    //swapped polygon, now do recursion to make sure
+	    UntanglePolygon(points);
+	  }//if crossing
+	}
+      }//second loop
+    }//first loop
+    
+  }
+  
   template <class T>
   float Signed2DTriArea(const Vector<T>& a,const Vector<T>& b, const Vector<T>& c)
   { return (a.x - c.x) * (b.y - c.y) - (a.y - c.y) * (b.x - c.x); }
-  
+
   template <class T>
   bool IntersectionPoint(const LineSegment<T>& line1,const LineSegment<T>& line2,Vector<T>& inter_pt) {
     float t;
     float a1 = Signed2DTriArea(line1.pt1, line1.pt2, line2.pt2);
     float a2 = Signed2DTriArea(line1.pt1, line1.pt2, line2.pt1);
-    if (a1 * a2 <= 0.0f) {
+    // special case handling
+    if (a1 * a2 < 0.0f) {
       float a3 = Signed2DTriArea(line2.pt1, line2.pt2, line1.pt1); 
       float a4 = a3 + a2 - a1;
-      if (a3 * a4 <= 0.0f) {
+      if (a3 * a4 < 0.0f) {
 	t = a3 / (a3 - a4);
 	inter_pt = line1.pt1 + t * (line1.pt2 - line1.pt1);
 	return true;
