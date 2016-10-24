@@ -27,6 +27,8 @@ namespace geo2d {
   class HalfLine {
     
   public:
+
+    HalfLine() : pt(0,0), dir(0) {}
     
     /// Default constructor
     HalfLine(const Vector<T>& point, const Vector<T>& direction)

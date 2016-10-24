@@ -11,13 +11,14 @@ namespace geo2d {
   template <class T>
   double angle(const Vector<T>& obj)
   { return atan2(obj.y,obj.x) / M_PI * 180.; }
+
   template <class T>
   double angle(const Vector<T>& obj1, const Vector<T>& obj2)
   { return atan2(obj2.y-obj1.y,obj2.x-obj1.x) / M_PI * 180.; }
 
   template <class T>
   Vector<T> dir(const Vector<T>& obj1, const Vector<T>& obj2)
-  { auto res = obj2; res.x -= obj1.x; res.y -= obj1.y; return res; }
+  { auto res = obj2; res.x -= obj1.x; res.y -= obj1.y; res/=length(res); return res; }
 
   template <class T>
   Vector<T> dir(double angle)

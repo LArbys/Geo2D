@@ -18,9 +18,14 @@ namespace geo2d {
   PyObject* PyDraw::image(const cv::Mat m) const
   {
     float carray[m.rows * m.cols];
+    size_t row,col;
     for(size_t i=0; i<m.rows; ++i) {
+      //size_t row = (m.rows - i -1);
+      row = i;
       for(size_t j=0; j<m.cols; ++j) {
-	carray[i*m.cols+j] = (float)(int(m.at<uchar>(i,j)));
+	//col = m.cols - j - 1;
+	col = j;
+	carray[row*m.cols+col] = (float)(int(m.at<uchar>(i,j)));
       }
     }
 
