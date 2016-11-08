@@ -6,7 +6,7 @@ namespace geo2d {
   //-------------------------------------------------------------------------
   // determines if 3 points are arranged in a clock-wire oder or not
   template <class T>
-  bool Clockwise(T Ax, T Ay, T Bx, T By, T Cx, T Cy)
+  bool Clockwise(const T& Ax, const T& Ay, const T& Bx, const T& By, const T& Cx, const T& Cy)
   {
     return (Cy - Ay) * (Bx - Ax) > (By - Ay) * (Cx - Ax);
   }
@@ -14,8 +14,8 @@ namespace geo2d {
   //------------------------------------------------------------
   // determine if two segments intersect
   template <class T>
-  bool SegmentOverlap(T Ax, T Ay, T Bx, T By,
-		      T Cx, T Cy, T Dx, T Dy)
+  bool SegmentOverlap(const T& Ax, const T& Ay, const T& Bx, const T& By,
+		      const T& Cx, const T& Cy, const T& Dx, const T& Dy)
   {
 
     bool overlap = ( (Clockwise(Ax, Ay, Cx, Cy, Dx, Dy) != Clockwise(Bx, By, Cx, Cy, Dx, Dy))
@@ -28,21 +28,22 @@ namespace geo2d {
   {
     
     //loop over edge
+    double Ax, Ay, Bx, By, Cx, Cy, Dx, Dy;
     for ( unsigned int i = 0; i < points.size() - 1; i++) {
-      T Ax = points[i].x;
-      T Ay = points[i].y;
-      T Bx = points[i+1].x;
-      T By = points[i+1].y;
+      Ax = points[i].x;
+      Ay = points[i].y;
+      Bx = points[i+1].x;
+      By = points[i+1].y;
       //loop over edges that have not been checked yet
       for (unsigned int j = i + 2; j < points.size() - 1; j++) {
 	//avoid consecutive segments
 	if ( points[i] == points[j + 1] )
 	  continue;
 	else {
-	  T Cx = points[j].x;
-	  T Cy = points[j].y;
-	  T Dx = points[j + 1].x;
-	  T Dy = points[j + 1].y;
+	  Cx = points[j].x;
+	  Cy = points[j].y;
+	  Dx = points[j + 1].x;
+	  Dy = points[j + 1].y;
 
 	  if ( SegmentOverlap( Ax, Ay, Bx, By, Cx, Cy, Dx, Dy ) ) {
 	    auto tmp = points[i + 1];

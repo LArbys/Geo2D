@@ -11,10 +11,10 @@ namespace geo2d {
 
 
   template <class T>
-  bool Clockwise(T Ax, T Ay, T Bx, T By, T Cx, T Cy);
+  bool Clockwise(const T& Ax, const T& Ay, const T& Bx, const T& By, const T& Cx, const T& Cy);
 
   template <class T>
-  bool SegmentOverlap(T Ax, T Ay, T Bx, T By,T Cx, T Cy, T Dx, T Dy);
+  bool SegmentOverlap(const T& Ax, const T& Ay, const T& Bx, const T& By,const T& Cx, const T& Cy, const T& Dx, const T& Dy);
   
   template <class T>
   void UntanglePolygon(std::vector<geo2d::Vector<T> >& points);
