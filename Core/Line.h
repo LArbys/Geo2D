@@ -56,6 +56,10 @@ namespace geo2d {
 
   template <class T>
   double angle(const Line<T>&);
+
+  template <class T>
+  double angle(const Line<T>&, const Line<T>&);
+  
 }
 
 #endif
