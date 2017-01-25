@@ -14,8 +14,8 @@
 #ifndef ALGOCONVEXHULL_H
 #define ALGOCONVEXHULL_H
 
-#include "Core/VectorArray.h"
-#include "Core/BoundingBox.h"
+#include "Geo2D/Core/VectorArray.h"
+#include "Geo2D/Core/BoundingBox.h"
 namespace geo2d {
   /**
      \class ConvexHull

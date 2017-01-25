@@ -26,8 +26,8 @@ typedef _object PyObject;
 #include <vector>
 
 #include <iostream>
-#include "Core/BoundingBox.h"
-#include "Core/VectorArray.h"
+#include "Geo2D/Core/BoundingBox.h"
+#include "Geo2D/Core/VectorArray.h"
 
 namespace geo2d {
   /**

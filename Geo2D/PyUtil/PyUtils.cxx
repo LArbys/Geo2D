@@ -1,7 +1,7 @@
 #ifndef __GEO2D_PYUTILS_CXX__
 #define __GEO2D_PYUTILS_CXX__
 
-#include "Core/spoon.h"
+#include "Geo2D/Core/spoon.h"
 #include "PyUtils.h"
 #define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
 #include <numpy/ndarrayobject.h>

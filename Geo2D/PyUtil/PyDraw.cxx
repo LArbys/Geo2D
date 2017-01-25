@@ -5,7 +5,7 @@
 //#include <numpy/arrayobject.h>
 #define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
 #include <numpy/ndarrayobject.h>
-#include "Core/spoon.h"
+#include "Geo2D/Core/spoon.h"
 namespace geo2d {
 
   PyDraw::PyDraw()

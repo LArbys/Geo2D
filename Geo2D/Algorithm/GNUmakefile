@@ -12,7 +12,7 @@ OBJECTS = $(SOURCES:.cxx=.o)
 
 # include options for this package
 INCFLAGS  = -I.                       #Include itself
-INCFLAGS += -I$(GEO2D_BASEDIR)/Geo2D
+INCFLAGS += -I$(GEO2D_BASEDIR)
 INCFLAGS += -I$(OPENCV_INCDIR)
 
 # platform-specific options
