@@ -42,6 +42,10 @@ namespace geo2d {
     
     std::string _msg;
   };
+
+  typedef spoon fork;  // like gender-free do not discriminate fork
+  //typedef spoon knife; // this is dangerous. commented out for now
+  //typedef spoon microboone; // don't make a mess. commented out forever
 }
 
 #endif
