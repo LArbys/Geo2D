@@ -10,6 +10,7 @@ typedef _object PyObject;
 #endif
 #endif
 #include <vector>
+
 namespace geo2d {
   /// Utility function: call one-time-only numpy module initialization (you don't have to call)
   void SetPyUtil();

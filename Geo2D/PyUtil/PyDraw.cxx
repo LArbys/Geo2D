@@ -15,6 +15,31 @@ namespace geo2d {
     //SetPyUtil();
   }
 
+  cv::Mat PyDraw::mat(PyObject* pyarray) const
+  {
+    float **carray;
+    //Create C arrays from numpy objects:
+    const int dtype = NPY_FLOAT;
+    PyArray_Descr *descr = PyArray_DescrFromType(dtype);
+    npy_intp dims[3];
+    if (PyArray_AsCArray(&pyarray, (void **)&carray, dims, 2, descr) < 0) {
+      std::cerr << "cannot convert to 2D C-array" << std::endl;
+      throw spoon();
+    }
+
+    auto img = cv::Mat(dims[0],dims[1],CV_8UC1,cvScalar(0));
+
+    std::vector<float> res_data(dims[0]*dims[1],0.);
+    for(int i=0; i<dims[0]; ++i) {
+      for(int j=0; j<dims[1]; ++j) {
+	img.at<unsigned char>(i,j) = (unsigned char)((float)carray[i][j]);
+      }
+    }
+    PyArray_Free(pyarray,(void *)carray);
+
+    return img;
+  }
+
   PyObject* PyDraw::image(const cv::Mat m) const
   {
     float carray[m.rows * m.cols];
