@@ -41,8 +41,11 @@ namespace geo2d {
     /// Default destructor
     ~LineSegment(){}
     
-    ::cv::Point_<T> pt1;
-    ::cv::Point_<T> pt2;
+    cv::Point_<T> pt1;
+    cv::Point_<T> pt2;
+    
+    T x(T y) const;
+    T y(T x) const;
     
   };
 
