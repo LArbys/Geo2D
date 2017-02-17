@@ -210,6 +210,12 @@ namespace geo2d {
     return dist(pt1,pt2);
   }
 
+  template <class T>
+  float Distance(const LineSegment<T>& line, const Vector<T>& pt) {
+    Vector<T> tmp1,tmp2;
+    return ClosestPoint(line,pt,tmp1,tmp2);
+  }
+  
   //page 129
   template <class T>
   float ClosestPoint(const HalfLine<T>& line, const Vector<T>& pt, Vector<T>& pt1, Vector<T>& pt2) {
@@ -221,7 +227,12 @@ namespace geo2d {
     return dist(pt1,pt2);
   }
 
-
+  template <class T>
+  float Distance(const HalfLine<T>& line, const Vector<T>& pt) {
+    Vector<T> tmp1,tmp2;
+    return ClosestPoint(line,pt,tmp1,tmp2);
+  }
+  
   //page 129
   template <class T>
   float ClosestPoint(const Line<T>& line, const Vector<T>& pt, Vector<T>& pt1, Vector<T>& pt2) {
@@ -230,6 +241,12 @@ namespace geo2d {
     pt1 = line.pt + t * ab;
     pt2 = pt;
     return dist(pt1,pt2);
+  }
+
+  template <class T>
+  float Distance(const Line<T>& line, const Vector<T>& pt) {
+    Vector<T> tmp1,tmp2;
+    return ClosestPoint(line,pt,tmp1,tmp2);
   }
   
 }

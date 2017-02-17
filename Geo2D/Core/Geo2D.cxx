@@ -46,16 +46,30 @@ namespace geo2d {
   template float ClosestPoint(const LineSegment<int   >& line, const Vector<int   >& pt, Vector<int   >& pt1, Vector<int   >& pt2);
   template float ClosestPoint(const LineSegment<short >& line, const Vector<short >& pt, Vector<short >& pt1, Vector<short >& pt2);
 
+  template float Distance(const LineSegment<double>& line, const Vector<double>& pt);
+  template float Distance(const LineSegment<float >& line, const Vector<float >& pt);
+  template float Distance(const LineSegment<int   >& line, const Vector<int   >& pt);
+  template float Distance(const LineSegment<short >& line, const Vector<short >& pt);
+
   template float ClosestPoint(const HalfLine<double>& line, const Vector<double>& pt, Vector<double>& pt1, Vector<double>& pt2);
   template float ClosestPoint(const HalfLine<float >& line, const Vector<float >& pt, Vector<float >& pt1, Vector<float >& pt2);
   template float ClosestPoint(const HalfLine<int   >& line, const Vector<int   >& pt, Vector<int   >& pt1, Vector<int   >& pt2);
   template float ClosestPoint(const HalfLine<short >& line, const Vector<short >& pt, Vector<short >& pt1, Vector<short >& pt2);
+
+  template float Distance(const HalfLine<double>& line, const Vector<double>& pt);
+  template float Distance(const HalfLine<float >& line, const Vector<float >& pt);
+  template float Distance(const HalfLine<int   >& line, const Vector<int   >& pt);
+  template float Distance(const HalfLine<short >& line, const Vector<short >& pt);
   
   template float ClosestPoint(const Line<double>& line, const Vector<double>& pt, Vector<double>& pt1, Vector<double>& pt2);
   template float ClosestPoint(const Line<float >& line, const Vector<float >& pt, Vector<float >& pt1, Vector<float >& pt2);
   template float ClosestPoint(const Line<int   >& line, const Vector<int   >& pt, Vector<int   >& pt1, Vector<int   >& pt2);
   template float ClosestPoint(const Line<short >& line, const Vector<short >& pt, Vector<short >& pt1, Vector<short >& pt2);
 
+  template float Distance(const Line<double>& line, const Vector<double>& pt);
+  template float Distance(const Line<float >& line, const Vector<float >& pt);
+  template float Distance(const Line<int   >& line, const Vector<int   >& pt);
+  template float Distance(const Line<short >& line, const Vector<short >& pt);
   
   template bool Clockwise(const double& Ax, const double& Ay, const double& Bx, const double& By, const double& Cx, const double& Cy);
   

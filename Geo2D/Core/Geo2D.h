@@ -9,7 +9,6 @@
 
 namespace geo2d {
 
-
   template <class T>
   bool Clockwise(const T& Ax, const T& Ay, const T& Bx, const T& By, const T& Cx, const T& Cy);
 
@@ -44,12 +43,20 @@ namespace geo2d {
   float ClosestPoint(const LineSegment<T>& line, const Vector<T>& pt, Vector<T>& pt1, Vector<T>& pt2);
 
   template <class T>
+  float Distance(const LineSegment<T>& line, const Vector<T>& pt);
+  
+  template <class T>
   float ClosestPoint(const HalfLine<T>& line, const Vector<T>& pt, Vector<T>& pt1, Vector<T>& pt2);
 
   template <class T>
-  float ClosestPoint(const Line<T>& line, const Vector<T>& pt, Vector<T>& pt1, Vector<T>& pt2);
+  float Distance(const HalfLine<T>& line, const Vector<T>& pt);
   
-}
+  template <class T>
+  float ClosestPoint(const Line<T>& line, const Vector<T>& pt, Vector<T>& pt1, Vector<T>& pt2);
 
+  template <class T>
+  float Distance(const Line<T>& line, const Vector<T>& pt);
+
+}
 
 #endif
