@@ -87,5 +87,15 @@ namespace geo2d {
     }
     return true;
   }
+
+  template <class T>
+  cv::Rect_<T> Intersection(const cv::Rect_<T>& rect0, const cv::Rect_<T>& rect1) {
+    return (rect0 & rect1);
+  }
+  
+  template <class T>
+  cv::Rect_<T> Union(const cv::Rect_<T>& rect0, const cv::Rect_<T>& rect1) {
+    return (rect0 | rect1);
+  }
 }
 #endif

@@ -20,12 +20,20 @@ namespace geo2d {
     box.points(&res[0]);
     return res;
   }
-
-
-
+  
   template VectorArray<float> edges(const cv::Rect_<double>&);
   template VectorArray<float> edges(const cv::Rect_<float >&);
   template VectorArray<float> edges(const cv::Rect_<int   >&);
   template VectorArray<float> edges(const cv::Rect_<short >&);
+  
+  template cv::Rect_<double> Union(const cv::Rect_<double>&, const cv::Rect_<double>&);
+  template cv::Rect_<float>  Union(const cv::Rect_<float>&, const cv::Rect_<float>&);
+  template cv::Rect_<int>  Union(const cv::Rect_<int>&, const cv::Rect_<int>&);
+  template cv::Rect_<short>  Union(const cv::Rect_<short>&, const cv::Rect_<short>&);
+  template cv::Rect_<double> Intersection(const cv::Rect_<double>&, const cv::Rect_<double>&);
+  template cv::Rect_<float>  Intersection(const cv::Rect_<float>&, const cv::Rect_<float>&);
+  template cv::Rect_<int>  Intersection(const cv::Rect_<int>&, const cv::Rect_<int>&);
+  template cv::Rect_<short>  Intersection(const cv::Rect_<short>&, const cv::Rect_<short>&);
+    
 
 }

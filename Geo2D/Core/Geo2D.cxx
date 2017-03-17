@@ -70,7 +70,7 @@ namespace geo2d {
   template float Distance(const Line<float >& line, const Vector<float >& pt);
   template float Distance(const Line<int   >& line, const Vector<int   >& pt);
   template float Distance(const Line<short >& line, const Vector<short >& pt);
-  
+
   template bool Clockwise(const double& Ax, const double& Ay, const double& Bx, const double& By, const double& Cx, const double& Cy);
   
   template bool SegmentOverlap(const double& Ax, const double& Ay, const double& Bx, const double& By,

@@ -21,6 +21,11 @@ namespace geo2d {
   template <class T>
   bool contains(const cv::RotatedRect&, const geo2d::Vector<T>&);
 
+  template <class T>
+  cv::Rect_<T> Intersection(const cv::Rect_<T>&, const cv::Rect_<T>&);
+
+  template <class T>
+  cv::Rect_<T> Union(const cv::Rect_<T>&, const cv::Rect_<T>&);
 }
 
 #endif
