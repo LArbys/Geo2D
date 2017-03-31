@@ -42,7 +42,9 @@ namespace geo2d {
 
   PyObject* PyDraw::image(const cv::Mat m) const
   {
-    float carray[m.rows * m.cols];
+
+    //float carray[m.rows * m.cols];
+    std::vector<float> carray(m.rows * m.cols,0.);
     size_t row,col;
     for(size_t i=0; i<m.rows; ++i) {
       //size_t row = (m.rows - i -1);
@@ -61,7 +63,7 @@ namespace geo2d {
 
     float* data_ptr = (float*) PyArray_DATA(array);
 
-    memcpy(data_ptr, carray, sizeof(float)*(m.rows*m.cols));
+    memcpy(data_ptr, &carray[0], sizeof(float)*(m.rows*m.cols));
 
     return PyArray_Return(array);
   }
