@@ -255,13 +255,13 @@ namespace geo2d {
     sum_sin = sum_cos = 0.0;
 
     for(const auto& xs : xs_v) {
-      sum_cos += xs.x / circle.radius;
-      sum_sin += xs.y / circle.radius;
+      sum_cos += (xs.x-circle.center.x) / circle.radius;
+      sum_sin += (xs.y-circle.center.y) / circle.radius;
     }
     
     auto angle_avg = atan2(sum_sin,sum_cos);
-    auto x = circle.radius * std::cos(angle_avg);
-    auto y = circle.radius * std::sin(angle_avg);
+    auto x = circle.center.x + circle.radius * std::cos(angle_avg);
+    auto y = circle.center.y + circle.radius * std::sin(angle_avg);
     
     return geo2d::Vector<T>(x,y);
   }
