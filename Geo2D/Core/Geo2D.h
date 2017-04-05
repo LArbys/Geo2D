@@ -57,6 +57,9 @@ namespace geo2d {
   template <class T>
   float Distance(const Line<T>& line, const Vector<T>& pt);
 
+  template <class T>
+  geo2d::Vector<T> AngularAverage(const geo2d::Circle<T>& circle, const geo2d::VectorArray<T>& xs_v);
+  
 }
 
 #endif

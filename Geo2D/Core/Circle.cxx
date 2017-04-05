@@ -41,7 +41,6 @@ namespace geo2d {
     radius   = (T)r;
   }
 
-
   template bool contains(const Circle<double>& circle, const Vector<double>& pt, double& measureDist);
   template bool contains(const Circle<float >& circle, const Vector<float >& pt, double& measureDist);
   template bool contains(const Circle<int   >& circle, const Vector<int   >& pt, double& measureDist);

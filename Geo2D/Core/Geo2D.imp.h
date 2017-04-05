@@ -249,6 +249,22 @@ namespace geo2d {
     return ClosestPoint(line,pt,tmp1,tmp2);
   }
   
+  template <class T>
+  geo2d::Vector<T> AngularAverage(const geo2d::Circle<T>& circle, const geo2d::VectorArray<T>& xs_v) {
+    T sum_sin, sum_cos;
+    sum_sin = sum_cos = 0.0;
+
+    for(const auto& xs : xs_v) {
+      sum_cos += xs.x / circle.radius;
+      sum_sin += xs.y / circle.radius;
+    }
+    
+    auto angle_avg = atan2(sum_sin,sum_cos);
+    auto x = circle.radius * std::cos(angle_avg);
+    auto y = circle.radius * std::sin(angle_avg);
+    
+    return geo2d::Vector<T>(x,y);
+  }
 }
 
 

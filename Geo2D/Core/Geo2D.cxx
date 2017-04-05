@@ -80,6 +80,9 @@ namespace geo2d {
   template void UntanglePolygon(std::vector<geo2d::Vector<float > >& points);
   template void UntanglePolygon(std::vector<geo2d::Vector<int   > >& points);
   template void UntanglePolygon(std::vector<geo2d::Vector<short > >& points);
+
+  template geo2d::Vector<double> AngularAverage(const geo2d::Circle<double>& circle, const geo2d::VectorArray<double>& xs_v);
+  template geo2d::Vector<float>  AngularAverage(const geo2d::Circle<float >& circle, const geo2d::VectorArray<float >& xs_v);
   
 }
 #endif
