@@ -14,7 +14,15 @@ namespace geo2d {
   template <class T>
   double angle(const LineSegment<T>& l)
   { return angle(l.pt1,l.pt2); }
-
+  
+  template <class T>
+  double angle(const LineSegment<T>& l1, const LineSegment<T>& l2)
+  { 
+    double angle1 = angle(l1.pt1,l1.pt2);
+    double angle2 = angle(l2.pt1,l2.pt2);
+    return (angle2-angle1);
+  }
+  
   template <class T>
   Vector<T> dir(const LineSegment<T>& l)
   { return geo2d::dir(l.pt1,l.pt2); }

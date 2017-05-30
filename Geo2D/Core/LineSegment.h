@@ -43,7 +43,8 @@ namespace geo2d {
     
     cv::Point_<T> pt1;
     cv::Point_<T> pt2;
-    
+    //    cv::Point_<float> dir;    
+
     T x(T y) const;
     T y(T x) const;
     
@@ -51,10 +52,16 @@ namespace geo2d {
 
   template <class T>
   double length  (const LineSegment<T>&);
+
   template <class T>
   double length2 (const LineSegment<T>&);
+  
   template <class T>
   double angle   (const LineSegment<T>&);
+  
+  template <class T>
+  double angle   (const LineSegment<T>&, const LineSegment<T>&);
+  
   template <class T>
   Vector<T> dir(const LineSegment<T>&);
 }
