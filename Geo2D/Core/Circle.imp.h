@@ -1,6 +1,6 @@
 #ifndef CIRCLE_IMP_H
 #define CIRCLE_IMP_H
-
+#include "Circle.h"
 namespace geo2d {
 
   template<class T>

@@ -1,7 +1,7 @@
 #ifndef BOUNDINGBOX_IMP_H
 #define BOUNDINGBOX_IMP_H
 #include "opencv2/imgproc/imgproc.hpp"
-
+#include "BoundingBox.h"
 namespace geo2d {
 
   template <class T>
