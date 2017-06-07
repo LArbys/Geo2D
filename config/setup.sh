@@ -45,6 +45,7 @@ GEO2D_OS=`uname -s`
 # Set path to sub directories
 export GEO2D_LIBDIR=$GEO2D_BASEDIR/lib
 export GEO2D_BINDIR=$GEO2D_BASEDIR/bin
+export GEO2D_INCDIR=$GEO2D_BASEDIR
 export GEO2D_COREDIR=$GEO2D_BASEDIR/Geo2D/core
 
 export PATH=$GEO2D_BINDIR:$PATH
