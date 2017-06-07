@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+out=""
+while test $# -gt 0; do
+  case "$1" in
+  -*=*) optarg=`echo "$1" | sed 's/[-_a-zA-Z0-9]*=//'` ;;
+  *)    optarg= ;;
+  esac
+
+  case $1 in
+      --incdir)
+	  out="${GEO2D_INCDIR} "
+	  ;;
+      --includes)
+	  out="-I${GEO2D_INCDIR} "
+	  out+=`python-config --includes`
+	  out+=" "
+	  out+="-I"
+	  out+=`python -c "import numpy; print numpy.get_include()"`
+	  out+=" "
+	  ;;
+      --libdir)
+	  out="{$GEO2D_LIBDIR} "
+	  ;;
+      --libs)
+	  out=""
+	  out+=" -L"
+	  out+=`python-config --prefix`
+	  out+="/lib/ "
+	  out+=`python-config --ldflags`
+	  out+=" "
+	  out+=" -L${GEO2D_LIBDIR} -lGeo2D_PyUtil -lGeo2D_Algorithm -lGeo2D_Core "
+	  ;;
+      --help)
+	  ### Print a help message
+          echo "Usage: `basename $0` [options]"
+	  echo ""
+	  echo "  --includes ... print out includes"
+	  echo "  --libs     ... print out libraries"
+	  exit 0
+	  ;;
+      *)
+	  ### Give an error
+          echo "Unknown argument \"$1\"!" 1>&2
+	  echo "${usage}" 1>&2
+	  exit 1
+	  ;;
+  esac
+  shift
+done
+echo $out

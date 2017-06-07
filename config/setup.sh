@@ -44,8 +44,10 @@ GEO2D_OS=`uname -s`
 
 # Set path to sub directories
 export GEO2D_LIBDIR=$GEO2D_BASEDIR/lib
-export GEO2D_COREDIR=$GEO2D_BASEDIR/core
-export GEO2D_USERDEVDIR=$GEO2D_BASEDIR/UserDev
+export GEO2D_BINDIR=$GEO2D_BASEDIR/bin
+export GEO2D_COREDIR=$GEO2D_BASEDIR/Geo2D/core
+
+export PATH=$GEO2D_BINDIR:$PATH
 
 if [[ -z $USER_MODULE ]]; then
     export USER_MODULE=""
