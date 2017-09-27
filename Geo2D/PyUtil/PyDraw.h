@@ -28,7 +28,11 @@ typedef _object PyObject;
 #include <iostream>
 #include "Geo2D/Core/BoundingBox.h"
 #include "Geo2D/Core/VectorArray.h"
+#ifndef __CLING__
+#ifndef __CINT__
 #include <opencv2/opencv.hpp>
+#endif
+#endif
 #include <opencv2/imgproc/imgproc.hpp>
 namespace geo2d {
   /**

@@ -45,6 +45,8 @@ namespace geo2d {
     { this->push_back(rhs); return *this; }
     inline VectorArray<T>& operator+=(const VectorArray<T>& rhs)
     { this->reserve(this->size()+rhs.size()); for(auto const& pt : rhs) this->push_back(pt); return (*this); }
+    inline VectorArray<T>& operator+=(const VectorArray<T>&& rhs)
+    { this->reserve(this->size()+rhs.size()); for(auto& pt : rhs) this->emplace_back(std::move(pt)); return (*this); }
 
     //
     // Accessors
@@ -53,6 +55,12 @@ namespace geo2d {
     bool is_longer(T length) const;
     Vector<T> dir(size_t idx) const;   
     const std::vector<Vector<T> >& as_vector() const { return (*this); }
+
+    //
+    // Methods
+    //
+    Vector<T> mean() const;
+
   };
 
 }

@@ -48,5 +48,10 @@ namespace geo2d {
   template int    dist(const Vector<int   >&, const Vector<int   >&);
   template short  dist(const Vector<short >&, const Vector<short >&);
 
+  template Vector<double> mean(const Vector<double>&, const Vector<double>&);
+  template Vector<float > mean(const Vector<float >&, const Vector<float >&);
+  template Vector<int   > mean(const Vector<int   >&, const Vector<int   >&);
+  template Vector<short > mean(const Vector<short >&, const Vector<short >&);
+
 }
 

@@ -39,6 +39,12 @@ namespace geo2d {
   template <class T>
   T dist(const Vector<T>& obj1, const Vector<T>& obj2)
   { return sqrt(dist2(obj1,obj2)); }
+
+  template <class T>
+  Vector<T> mean(const Vector<T>& obj1, const Vector<T>& obj2)
+  { auto res = obj1; res.x += obj2.x; res.y += obj2.y; res /= (T)2; return res; }
+
+
 }
 
 #endif

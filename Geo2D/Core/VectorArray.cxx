@@ -48,6 +48,19 @@ namespace geo2d {
       return geo2d::dir((*this)[idx],(*this)[idx+1]);
   }
 
+  template <class T>
+  Vector<T> VectorArray<T>::mean() const
+  {
+    Vector<T> res(0,0);
+    for(size_t idx=0; idx<this->size(); ++idx) {
+      res.x += (*this)[idx].x;
+      res.y += (*this)[idx].y;
+    }
+    res.x /= (T)this->size();
+    res.y /= (T)this->size();
+    return res;
+  }
+
 }
 
 template class geo2d::VectorArray<double>;
