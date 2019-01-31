@@ -42,14 +42,24 @@ else
 fi
 GEO2D_OS=`uname -s`
 
+# Check for OpenCV
+# Check OpenCV
+if [[ -z $OPENCV_LIBDIR || -z $OPENCV_INCDIR ]]; then
+    echo
+    echo Looks like you do not have OpenCV installed
+    echo "(or have not defined OPENCV_INCDIR and OPENCV_LIBDIR)"
+    echo You cannot use Geo2D with opencv
+    echo Aborting.
+    echo
+    return;
+fi
+
 # Set path to sub directories
 export GEO2D_INCDIR=$GEO2D_BASEDIR
 export GEO2D_LIBDIR=$GEO2D_BASEDIR/lib
 export GEO2D_BINDIR=$GEO2D_BASEDIR/bin
 export GEO2D_INCDIR=$GEO2D_BASEDIR
 export GEO2D_COREDIR=$GEO2D_BASEDIR/Geo2D/core
-
-export PATH=$GEO2D_BINDIR:$PATH
 
 if [[ -z $USER_MODULE ]]; then
     export USER_MODULE=""
@@ -111,15 +121,17 @@ if [[ -z $ROOTSYS ]]; then
 	    ;;
 	esac
 else
-    export PYTHONPATH=$ROOTSYS/lib:$PYTHONPATH;
+    [[ ":$PYTHONPATH:" != *":${ROOTSYS}/lib:"* ]] && export PYTHONPATH="${ROOTSYS}/lib:${PYTHONPATH}"    
 fi
 
-export LD_LIBRARY_PATH=$GEO2D_LIBDIR:$LD_LIBRARY_PATH
-export PYTHONPATH=$GEO2D_BASEDIR/python:$PYTHONPATH
+# prepend to ld and python paths
+[[ ":$LD_LIBRARY_PATH:" != *":${GEO2D_LIBDIR}:"* ]] && export LD_LIBRARY_PATH="${GEO2D_LIBDIR}:${LD_LIBRARY_PATH}"
+[[ ":$PYTHONPATH:" != *":${GEO2D_BASEDIR}/python:"* ]] && export PYTHONPATH="${GEO2D_BASEDIR}/python:${PYTHONPATH}"
 if [ $GEO2D_OS = 'Darwin' ]; then
-    export DYLD_LIBRARY_PATH=$GEO2D_LIBDIR:$DYLD_LIBRARY_PATH
+    [[ ":$DYLD_LIBRARY_PATH:" != *":${GEO2D_LIBDIR}:"* ]] && export DYLD_LIBRARY_PATH="${GEO2D_LIBDIR}:${LD_LIBRARY_PATH}"    
 fi
-export PATH=$GEO2D_BASEDIR/bin:$PATH
+# prepend bin directory to PATH
+[[ ":$PATH:" != *":${GEO2D_BINDIR}:"* ]] && export PATH="${GEO2D_BINDIR}:${PATH}"
 echo
 echo "Finish configuration. To build, type:"
 echo "> cd \$GEO2D_BASEDIR"
