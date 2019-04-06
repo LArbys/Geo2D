@@ -42,6 +42,17 @@ else
 fi
 GEO2D_OS=`uname -s`
 
+# Python version
+if [[ -z $GEO2D_PYTHON_VERSION ]]; then
+    export GEO2D_PYTHON_VERSION=`python -V 2>&1 | awk '{ print $2 }' | sed 's/\./\ /g' | awk '{ print $1 }'`
+    echo "GEO2D_PYTHON_VERSION =  ${GEO2D_PYTHON_VERSION}"
+else
+    echo "GEO2D_PYTHON_VERSION =  ${GEO2D_PYTHON_VERSION} (ALREADY SPECIFIED)"
+fi
+
+export GEO2D_PYTHON="python${GEO2D_PYTHON_VERSION}"
+echo "GEO2D_PYTHON = ${GEO2D_PYTHON}"
+
 # Check for OpenCV
 # Check OpenCV
 if [[ -z $OPENCV_LIBDIR || -z $OPENCV_INCDIR ]]; then

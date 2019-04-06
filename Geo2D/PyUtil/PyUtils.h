@@ -13,7 +13,7 @@ typedef _object PyObject;
 
 namespace geo2d {
   /// Utility function: call one-time-only numpy module initialization (you don't have to call)
-  void SetPyUtil();
+  int SetPyUtil();
   PyObject* as_ndarray32(const std::vector<float>& vec);
   PyObject* as_ndarray64(const std::vector<double>& vec);
 }

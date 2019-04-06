@@ -13,8 +13,13 @@ OBJECTS = $(SOURCES:.cxx=.o)
 # include options for this package
 INCFLAGS  = -I.                       #Include itself
 INCFLAGS += -I$(GEO2D_BASEDIR)
+ifeq ("${GEO2D_PYTHON_VERSION}","3")
+INCFLAGS += $(shell python3-config --includes)
+else
 INCFLAGS += $(shell python-config --includes)
-INCFLAGS += -I$(shell python -c "import numpy; print numpy.get_include()")
+endif
+INCFLAGS += -I$(shell ${GEO2D_PYTHON} -c "from __future__ import print_function; import numpy; print(numpy.get_include())")
+
 INCFLAGS += -I$(OPENCV_INCDIR)
 
 # platform-specific options
@@ -24,8 +29,13 @@ OSNAMEMODE      = $(OSNAME)
 
 LDFLAGS += -L$(GEO2D_LIBDIR) -lGeo2D_Core 
 LDFLAGS += -L$(OPENCV_LIBDIR) -lopencv_core -lopencv_highgui -lopencv_imgcodecs -lopencv_imgproc
+ifeq ("${GEO2D_PYTHON_VERSION}","3")
+LDFLAGS += -L$(shell python3-config --prefix)/lib/
+LDFLAGS += $(shell python3-config --ldflags)
+else
 LDFLAGS += -L$(shell python-config --prefix)/lib/
 LDFLAGS += $(shell python-config --ldflags)
+endif
 
 # call kernel specific compiler setup
 include $(GEO2D_BASEDIR)/Makefile/Makefile.${OSNAME}

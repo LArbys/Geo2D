@@ -2,7 +2,7 @@
 #define PYDRAW_CXX
 
 #include "PyDraw.h"
-//#include <numpy/arrayobject.h>
+#include "PyUtils.h"
 #define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
 #include <numpy/ndarrayobject.h>
 #include "Geo2D/Core/spoon.h"
@@ -10,9 +10,7 @@ namespace geo2d {
 
   PyDraw::PyDraw()
   {
-    static bool once=false;
-    if(!once) { import_array(); once=true; }
-    //SetPyUtil();
+    SetPyUtil();
   }
 
   cv::Mat PyDraw::mat(PyObject* pyarray) const

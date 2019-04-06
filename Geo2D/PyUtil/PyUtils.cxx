@@ -9,10 +9,10 @@
 
 namespace geo2d {
 
-  void SetPyUtil()
+  int SetPyUtil()
   {
     static bool once=false;
-    if(!once) { import_array(); once=true; }
+    if(!once) { once = true; import_array1(0); }
   }
 
   PyObject* as_ndarray32(const std::vector<float>& vec)
