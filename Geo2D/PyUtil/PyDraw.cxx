@@ -44,10 +44,10 @@ namespace geo2d {
     //float carray[m.rows * m.cols];
     std::vector<float> carray(m.rows * m.cols,0.);
     size_t row,col;
-    for(size_t i=0; i<m.rows; ++i) {
+    for(size_t i=0; i<(size_t)m.rows; ++i) {
       //size_t row = (m.rows - i -1);
       row = i;
-      for(size_t j=0; j<m.cols; ++j) {
+      for(size_t j=0; j<(size_t)m.cols; ++j) {
 	//col = m.cols - j - 1;
 	col = j;
 	carray[row*m.cols+col] = (float)(int(m.at<uchar>(i,j)));
