@@ -19,7 +19,7 @@ OSNAME          = $(shell uname -s)
 HOST            = $(shell uname -n)
 OSNAMEMODE      = $(OSNAME)
 
-LDFLAGS += -L$(OPENCV_LIBDIR) -lopencv_core -lopencv_imgcodecs -lopencv_imgproc
+LDFLAGS += -L$(OPENCV_LIBDIR) -lopencv_core -lopencv_imgproc
 
 # call kernel specific compiler setup
 include $(GEO2D_BASEDIR)/Makefile/Makefile.${OSNAME}
