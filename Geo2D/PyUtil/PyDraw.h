@@ -30,7 +30,7 @@ typedef _object PyObject;
 #include "Geo2D/Core/VectorArray.h"
 #ifndef __CLING__
 #ifndef __CINT__
-#include <opencv2/opencv.hpp>
+#include <opencv2/core.hpp>
 #endif
 #endif
 #include <opencv2/imgproc/imgproc.hpp>
