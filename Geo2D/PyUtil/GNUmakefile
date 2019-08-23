@@ -28,7 +28,7 @@ HOST            = $(shell uname -n)
 OSNAMEMODE      = $(OSNAME)
 
 LDFLAGS += -L$(GEO2D_LIBDIR) -lGeo2D_Core 
-LDFLAGS += -L$(OPENCV_LIBDIR) -lopencv_core -lopencv_highgui -lopencv_imgcodecs -lopencv_imgproc
+LDFLAGS += -L$(OPENCV_LIBDIR) -lopencv_core -lopencv_imgcodecs -lopencv_imgproc
 ifeq ("${GEO2D_PYTHON_VERSION}","3")
 LDFLAGS += -L$(shell python3-config --prefix)/lib/
 LDFLAGS += $(shell python3-config --ldflags)
