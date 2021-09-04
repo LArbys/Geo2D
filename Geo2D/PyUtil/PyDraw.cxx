@@ -25,7 +25,7 @@ namespace geo2d {
       throw spoon();
     }
 
-    auto img = cv::Mat(dims[0],dims[1],CV_8UC1,cvScalar(0));
+    auto img = cv::Mat(dims[0],dims[1],CV_8UC1,cv::Scalar(0));
 
     std::vector<float> res_data(dims[0]*dims[1],0.);
     for(int i=0; i<dims[0]; ++i) {
