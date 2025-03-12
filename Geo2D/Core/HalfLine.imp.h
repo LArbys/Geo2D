@@ -1,6 +1,7 @@
 #include "HalfLine.h"
 #include "spoon.h"
 #include <sstream>
+#include <cmath>
 
 namespace geo2d {
 
@@ -42,6 +43,6 @@ namespace geo2d {
 
   template <class T>
   double angle(const HalfLine<T>& l)
-  { return geo2d::angle(l); }
+  { return atan2(l.dir.y,l.dir.x); }
 
 }

@@ -13,6 +13,7 @@ namespace geo2d {
   {
     static bool once=false;
     if(!once) { once = true; import_array1(0); }
+    return 0;
   }
 
   PyObject* as_ndarray32(const std::vector<float>& vec)
