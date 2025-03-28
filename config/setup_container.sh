@@ -79,11 +79,30 @@ if [[ -z $USER_MODULE ]]; then
 fi
 
 # Check compiler availability for clang++ and g++
+# Get cxx standard to use from ROOT
+TEST_VAR=`root-config --features`
+CXX_STANDARD='c++17' # by default
+#echo "${TEST_VAR}"
+if echo "$TEST_VAR" | grep -q "cxx17"; then
+    echo "c++17 found"
+    CXX_STANDARD='c++17' # by default
+elif echo "$TEST_VAR" | grep -q "cxx14"; then
+    echo "c++14 found"
+    CXX_STANDARD='c++14' # by default
+elif echo "$TEST_VAR" | grep -q "cxx11"; then
+    echo "c++11 found"
+    CXX_STANDARD='c++11' # by default
+else
+    echo "c++17 not found"
+fi
+echo "Geo2D will build with CXX Standard: ${CXX_STANDARD}"
+
+# Check compiler availability for clang++ and g++
 GEO2D_CXX=clang++
 if [ `command -v $GEO2D_CXX` ]; then
-    export GEO2D_CXX="$GEO2D_CXX -std=c++11";
+    export GEO2D_CXX="$GEO2D_CXX -std=${CXX_STANDARD}";
 else
-    GEO2D_CXX=g++
+    GEO2D_CXX="g++ -std=${CXX_STANDARD}"
     if [[ -z `command -v $GEO2D_CXX` ]]; then
 	echo
 	echo Looks like you do not have neither clang or g++!
