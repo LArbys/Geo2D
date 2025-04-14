@@ -1,24 +1,39 @@
-#ifndef __GEO2D_PYUTILS_CXX__
-#define __GEO2D_PYUTILS_CXX__
+#ifndef __GEO2D_PYFUNCS_CXX__
+#define __GEO2D_PYFUNCS_CXX__
 
-#include "Geo2D/Core/spoon.h"
-#include "PyUtils.h"
+#include "Geo2D/PyUtil/PyFuncs.h"
+
 #define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
 #include <numpy/ndarrayobject.h>
+
+#include "Geo2D/Core/spoon.h"
 #include <vector>
 
 namespace geo2d {
 
-  int SetPyUtil()
+  bool PyFuncs::_once = false;
+
+  PyFuncs::PyFuncs()
   {
-    static bool once=false;
-    if(!once) { once = true; import_array1(0); }
+    load_ndarray();
+  }
+
+  PyFuncs::~PyFuncs()
+  {
+  }
+  
+  int PyFuncs::load_ndarray()
+  {
+    if(!_once) {
+      _once = true;
+      import_array1(0);
+    }
     return 0;
   }
 
-  PyObject* as_ndarray32(const std::vector<float>& vec)
+  PyObject* PyFuncs::as_ndarray_float(const std::vector<float>& vec)
   {
-    SetPyUtil();
+    //SetPyUtil();
 
     if (vec.size()>=INT_MAX) {
       std::cerr << "Length of data vector too long to specify ndarray. Use by batch call." << std::endl;
@@ -33,9 +48,9 @@ namespace geo2d {
     return PyArray_Return(array);
   }
 
-  PyObject* as_ndarray64(const std::vector<double>& vec)
+  PyObject* PyFuncs::as_ndarray_double(const std::vector<double>& vec)
   {
-    SetPyUtil();
+    //SetPyUtil();
 
     if (vec.size()>=INT_MAX) {
       std::cerr << "Length of data vector too long to specify ndarray. Use by batch call." << std::endl;

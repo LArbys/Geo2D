@@ -14,7 +14,8 @@
 #ifndef CONTOUR_H
 #define CONTOUR_H
 
-#include "VectorArray.h"
+#include "Geo2D/Core/VectorArray.h"
+
 namespace geo2d {
   /**
      \class Contour

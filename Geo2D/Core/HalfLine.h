@@ -15,7 +15,7 @@
 #define HALFLINE_H
 
 #include <iostream>
-#include "Vector.h"
+#include "Geo2D/Core/Vector.h"
 
 namespace geo2d {
   /**

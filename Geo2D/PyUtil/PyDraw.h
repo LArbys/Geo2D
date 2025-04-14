@@ -15,25 +15,15 @@
 #ifndef GEO2DPYDRAW_H
 #define GEO2DPYDRAW_H
 
-struct _object;
-typedef _object PyObject;
-
-#ifndef __CLING__
-#ifndef __CINT__
 #include <Python.h>
-#endif
-#endif
 #include <vector>
 
 #include <iostream>
 #include "Geo2D/Core/BoundingBox.h"
 #include "Geo2D/Core/VectorArray.h"
-#ifndef __CLING__
-#ifndef __CINT__
 #include <opencv2/core.hpp>
-#endif
-#endif
 #include <opencv2/imgproc/imgproc.hpp>
+
 namespace geo2d {
   /**
      \class PyDraw
@@ -53,6 +43,13 @@ namespace geo2d {
     PyObject* rect   (const geo2d::Rect&           ) const;
     PyObject* rrect  (const geo2d::RotatedRect&    ) const;
     cv::Mat   mat    (PyObject*                    ) const;
+
+    int load_ndarray();
+    
+  private:
+
+    static bool _once;
+    
   };
 }
 

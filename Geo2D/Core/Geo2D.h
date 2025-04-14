@@ -1,11 +1,11 @@
 #ifndef GEO2D_H
 #define GEO2D_H
 
-#include "Line.h"
-#include "HalfLine.h"
-#include "LineSegment.h"
-#include "Circle.h"
-#include "VectorArray.h"
+#include "Geo2D/Core/Line.h"
+#include "Geo2D/Core/HalfLine.h"
+#include "Geo2D/Core/LineSegment.h"
+#include "Geo2D/Core/Circle.h"
+#include "Geo2D/Core/VectorArray.h"
 
 namespace geo2d {
 

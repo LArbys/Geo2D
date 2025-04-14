@@ -66,11 +66,10 @@ if [[ -z $OPENCV_LIBDIR || -z $OPENCV_INCDIR ]]; then
 fi
 
 # Set path to sub directories
-export GEO2D_INCDIR=$GEO2D_BASEDIR
-export GEO2D_LIBDIR=$GEO2D_BASEDIR/lib
+export GEO2D_INCDIR=$GEO2D_BASEDIR/build/include
+export GEO2D_LIBDIR=$GEO2D_BASEDIR/build/lib
 export GEO2D_BINDIR=$GEO2D_BASEDIR/bin
-export GEO2D_INCDIR=$GEO2D_BASEDIR
-export GEO2D_COREDIR=$GEO2D_BASEDIR/Geo2D/core
+export GEO2D_COREDIR=$GEO2D_BASEDIR/Geo2D/Core
 
 if [[ -z $USER_MODULE ]]; then
     export USER_MODULE=""

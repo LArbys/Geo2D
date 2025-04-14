@@ -5,18 +5,27 @@
 //
 
 #ifdef __CINT__
+
 #pragma link off all globals;
 #pragma link off all classes;
 #pragma link off all functions;
+#pragma link off all namespaces;
 
-//
-// Functions
-//
-#pragma link C++ class geo2d::load_pyutil+;
-#pragma link C++ class geo2d::PyDraw;
-#pragma link C++ function geo2d::as_ndarray32(const std::vector<float>&)+;
-#pragma link C++ function geo2d::as_ndarray64(const std::vector<double>&)+;
-//ADD_NEW_CLASS ... do not change this line
+// Enable the geo2d namespace
+#pragma link C++ namespace geo2d;
+#pragma link C++ namespace std;
+
+// If you need the vector typedefs that are used by PyUtils methods
+#pragma link C++ class std::vector<float>+;
+#pragma link C++ class std::vector<double>+;
+
+// If you need the PyObject to be properly handled
+#pragma link C++ class PyObject+;
+
+// Enable the PyUtils class and its methods
+#pragma link C++ class geo2d::PyFuncs+;
+#pragma link C++ class geo2d::PyDraw+;
+
 
 #endif
 

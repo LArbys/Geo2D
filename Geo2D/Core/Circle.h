@@ -14,8 +14,8 @@
 #ifndef CIRCLE_H
 #define CIRCLE_H
 
-#include "Vector.h"
-#include "VectorArray.h"
+#include "Geo2D/Core/Vector.h"
+#include "Geo2D/Core/VectorArray.h"
 
 namespace geo2d {
   /**

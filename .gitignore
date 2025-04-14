@@ -1,5 +1,4 @@
 lib/*
-*.txt
 *.o
 *Dict*
 *.ipynb_checkpoints
@@ -7,3 +6,6 @@ lib/*
 *.dat
 *.root
 *.ipynb
+*~
+*pycache*
+build/*

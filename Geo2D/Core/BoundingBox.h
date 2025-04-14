@@ -2,7 +2,7 @@
 #define __BOUNDINGBOX_H__
 
 #include "opencv2/core/mat.hpp"
-#include "VectorArray.h"
+#include "Geo2D/Core/VectorArray.h"
 
 namespace geo2d {
 

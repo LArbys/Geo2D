@@ -1,0 +1,6 @@
+@PACKAGE_INIT@
+
+include("${CMAKE_CURRENT_LIST_DIR}/@TARGETS_EXPORT_NAME@.cmake")
+set_and_check(GEO2D_INCLUDE_DIR "@PACKAGE_GEO2D_INCLUDE_DIR@")
+set_and_check(GEO2D_LIBRARY_DIR "@PACKAGE_GEO2D_LIBRARY_DIR@")
+check_required_components("@PROJECT_NAME@")

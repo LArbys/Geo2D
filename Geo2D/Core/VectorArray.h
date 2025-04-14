@@ -14,7 +14,7 @@
 #ifndef VECTORARRAY_H
 #define VECTORARRAY_H
 
-#include "Vector.h"
+#include "Geo2D/Core/Vector.h"
 #include <vector>
 
 namespace geo2d {
