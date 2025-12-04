@@ -9,7 +9,13 @@ endif()
 #---Module directory
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
+# Set use of python3 by default (Should Deprecate python2)
+set(USE_PYTHON3 ON)
+
 ## Dependencies
+
+#--- OPENCV
+find_package(OpenCV CONFIG REQUIRED) 
 
 #---CERN ROOT
 find_package(ROOT CONFIG REQUIRED)
@@ -29,6 +35,8 @@ else ()
   set(CMAKE_CXX_STANDARD "11")
 endif()
 link_libraries( ${ROOT_LIBRARIES} )
+
+# OPENCV
 
 #---PYTHON
 if (USE_PYTHON3)
